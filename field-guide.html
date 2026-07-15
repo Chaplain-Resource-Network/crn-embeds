@@ -1,0 +1,399 @@
+<meta charset="utf-8">
+<!-- CRN LightBearer™ - predictive, metered search widget (Supabase-backed). (c) 2026 Marsh Institute for Chaplains. -->
+<div id="crn-fg-root">
+<style>
+#crn-fg-root{--ink:#16283f;--ink2:#33475f;--gold:#d99a2b;--gold-d:#b87f1c;--cream:#f7f4ee;--card:#fff;--line:#e5ddcf;--red:#a3261c;--red-bg:#fbecea;--green:#2f6b3f;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:var(--cream);margin:0 auto;max-width:1040px;padding:0 16px 40px;line-height:1.5;-webkit-font-smoothing:antialiased}
+#crn-fg-root *{box-sizing:border-box}
+.fg-head{display:flex;align-items:center;gap:14px;padding:22px 0 4px}
+.fg-title{font-size:26px;font-weight:800;letter-spacing:-.4px;margin:0}
+.fg-sub{margin:2px 0 0;color:var(--ink2);font-size:14px}
+.fg-meter{display:flex;gap:8px;align-items:center;flex-wrap:wrap;font-size:12.5px;color:var(--ink2);margin:10px 0 2px}
+.fg-pill{background:#fff;border:1px solid var(--line);border-radius:999px;padding:3px 11px;font-weight:600}
+.fg-pill b{color:var(--gold-d)}
+.fg-scope{background:#fff8ec;border:1px solid #f0dcae;border-radius:10px;padding:10px 14px;font-size:13px;color:#6b551f;margin:10px 0 16px}
+.fg-scope b{color:var(--gold-d)}
+.fg-searchwrap{position:relative;display:flex;gap:8px;margin:0 0 4px}
+.fg-search{flex:1;font-size:17px;padding:14px 16px;border:2px solid var(--line);border-radius:12px;background:#fff;outline:none}
+.fg-search:focus{border-color:var(--gold)}
+.fg-btn{background:var(--ink);color:#fff;border:0;border-radius:12px;padding:0 24px;font-size:15px;font-weight:700;cursor:pointer}
+.fg-btn:hover{background:#0f1d30}
+.fg-drop{position:absolute;top:56px;left:0;right:96px;background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:0 10px 30px rgba(20,40,60,.12);z-index:40;overflow:hidden}
+.fg-drop .it{padding:9px 14px;cursor:pointer;border-top:1px solid #f2ede2;display:flex;gap:8px;align-items:baseline}
+.fg-drop .it:first-child{border-top:0}
+.fg-drop .it:hover{background:#faf6ee}
+.fg-drop .kw{font-weight:700;color:var(--gold-d);font-size:14px;text-transform:capitalize}
+.fg-drop .ti{font-size:13px;color:var(--ink2)}
+.fg-soon{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#9a8f79;background:#efe9dc;border-radius:5px;padding:1px 6px;margin-left:auto}
+.fg-status{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 14px}
+.fg-st{font-size:11.5px;font-weight:600;padding:3px 10px;border-radius:999px;border:1px solid;white-space:nowrap}
+.fg-st.ok{background:#eaf3ec;color:#2f6b3f;border-color:#bfe0c6}
+.fg-st.part{background:#fdf1dc;color:#b87f1c;border-color:#f0dcae}
+.fg-st.no{background:#f1eee7;color:#9a8f79;border-color:#e5ddcf}
+.fg-metarow{display:flex;flex-wrap:wrap;gap:6px 16px;margin:0 0 14px;font-size:12.5px;color:var(--ink2)}
+.fg-metarow .m b{color:var(--ink)}
+.fg-sub{margin-top:12px;font-size:13.5px;color:var(--ink2)}
+.fg-sublab{font-size:12px;font-weight:700;color:var(--ink2);margin-bottom:2px}
+.fg-sec .rvhtml p{margin:.3em 0}.fg-sec .rvhtml ul{margin:.3em 0 .3em 18px}
+.fg-band{display:flex;align-items:baseline;gap:10px;margin:24px 0 12px;padding-bottom:6px;border-bottom:2px solid var(--gold)}
+.fg-bandlab{font-size:13px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--ink)}
+.fg-bandsub{font-size:12px;color:#8a7f6a}
+.fg-toolbar{display:flex;align-items:center;gap:8px;font-size:12.5px;color:#8a7f6a;margin:2px 0 16px;flex-wrap:wrap}
+.fg-tg{background:#fff;border:1px solid var(--line);border-radius:999px;padding:5px 12px;font-size:12.5px;font-weight:600;color:var(--ink2);cursor:pointer}
+.fg-tg.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.fg-card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;cursor:pointer}
+.fg-tag{display:inline-block;font-size:11px;padding:2px 8px;border-radius:999px;background:#eef2f6;color:var(--ink2)}
+.fg-tag.brief{background:#eaf3ec;color:var(--green)}
+.fg-kw{display:inline-block;font-size:11px;padding:2px 8px;border-radius:6px;background:#f4efe4;color:var(--gold-d);margin:4px 4px 0 0;text-transform:capitalize}
+.fg-empty,.fg-loading{color:#8a7f6a;font-size:14px;padding:26px 4px}
+.fg-exbadge{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--gold-d);background:#fdf1dc;border-radius:6px;padding:3px 9px;margin-bottom:6px}
+.fg-soonbadge{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:#8a7f6a;background:#efe9dc;border-radius:6px;padding:3px 9px;margin-bottom:6px}
+.fg-detail h2{font-size:23px;margin:2px 0 2px;letter-spacing:-.3px}
+.fg-detail .topicline{font-size:13px;color:var(--gold-d);font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:12px}
+.fg-act{background:var(--red-bg);border:1px solid #edc4bd;border-left:5px solid var(--red);border-radius:10px;padding:13px 16px;margin:0 0 16px}
+.fg-act .lab{font-size:11px;font-weight:800;letter-spacing:1px;color:var(--red);text-transform:uppercase}
+.fg-act p{margin:5px 0 0;font-size:14px;color:#5a221b}
+.fg-sec{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:0 0 14px}
+.fg-sec h4{margin:0 0 10px;font-size:12px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--gold-d);display:flex;align-items:center;gap:7px}
+.fg-sshl{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;font-size:13.5px}
+.fg-sshl b{color:var(--ink)}
+.fg-shlgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:8px 0}
+.fg-shlbox{background:#faf6ee;border:1px solid var(--line);border-radius:8px;padding:9px 12px;font-size:13.5px}
+.fg-shlk{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:var(--gold-d);margin-bottom:3px}
+@media(max-width:520px){.fg-shlgrid{grid-template-columns:1fr}}
+.fg-ladder{display:flex;gap:8px;flex-wrap:wrap;margin:2px 0}
+.fg-lvl{display:flex;flex-direction:column;align-items:flex-start;gap:1px;background:#fff;border:1.5px solid var(--line);border-radius:10px;padding:8px 12px;cursor:pointer;min-width:130px}
+.fg-lvl:hover{border-color:var(--gold)}
+.fg-lvl.on{background:var(--ink);border-color:var(--ink)}
+.fg-lvl.on .ll,.fg-lvl.on .lb{color:#fff}
+.fg-lvl.dim{opacity:.45;cursor:not-allowed}
+.fg-lvl .ll{font-size:10.5px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:#8a7f6a}
+.fg-lvl .lb{font-size:14px;font-weight:700}
+.fg-beat{padding:8px 0;border-top:1px solid #f0ece2}
+.fg-beat:first-child{border-top:0}
+.fg-beat .who{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--gold-d)}
+.fg-beat .who.pt{color:var(--ink2)}
+.fg-beat .ln{font-size:14.5px;margin:1px 0 0}
+.fg-beat .nt{font-size:12px;color:#8a7f6a;font-style:italic;margin-top:2px}
+.fg-claim{padding:9px 0;border-top:1px solid #f0ece2;font-size:13.5px}
+.fg-claim:first-child{border-top:0}
+.fg-grade{display:inline-block;font-size:10.5px;font-weight:700;padding:1px 7px;border-radius:5px;background:#eef2f6;color:var(--ink2);margin-left:6px}
+.fg-cite{font-size:13px;color:var(--ink2);padding:10px 0 10px 22px;text-indent:-22px;border-top:1px solid #ece5d6;line-height:1.5}
+.fg-cite:first-child{border-top:0}
+.fg-cite a{color:var(--gold-d)}
+.fg-linkbtn{display:inline-block;background:var(--ink);color:#fff;text-decoration:none;font-size:13px;font-weight:600;padding:8px 14px;border-radius:9px;margin:4px 8px 0 0}
+.fg-note{font-size:12px;color:#8a7f6a;margin-top:6px}
+.fg-lampico{width:15px;height:15px;vertical-align:middle}
+.fg-buckets{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:6px 0}
+.fg-bucket{border:1px solid var(--line);border-radius:10px;padding:12px;background:#fff;display:flex;flex-direction:column}
+.fg-bucket .bk{font-weight:800;color:var(--ink);margin-bottom:1px;font-size:14px}
+.fg-bucket .bpr{font-weight:700;color:var(--gold-d);margin:0 0 6px;font-size:13px}
+.fg-bucket ul{margin:0 0 10px 16px;padding:0;font-size:12.5px;color:var(--ink2);line-height:1.5;flex:1}
+.fg-bucket .fg-linkbtn{align-self:flex-start;padding:7px 16px;font-size:13px}
+@media(max-width:640px){.fg-buckets{grid-template-columns:1fr}}
+.fg-foot{text-align:center;font-size:11.5px;color:#9a8f79;margin-top:28px;padding-top:16px;border-top:1px solid var(--line)}
+@media(max-width:560px){.fg-title{font-size:21px}.fg-searchwrap{flex-direction:column}.fg-btn{padding:12px}.fg-drop{right:0;top:112px}}
+</style>
+
+<div class="fg-head">
+  <svg width="42" height="42" viewBox="0 0 48 48" aria-hidden="true">
+    <path d="M18 6h12l-2 6H20l-2-6z" fill="#16283f"/><path d="M14 12h20l3 9H11l3-9z" fill="#16283f"/>
+    <ellipse cx="24" cy="31" rx="11" ry="10" fill="#d99a2b"/><ellipse cx="24" cy="31" rx="6" ry="6" fill="#fff3d6"/>
+    <rect x="12" y="40" width="24" height="3" rx="1.5" fill="#16283f"/>
+  </svg>
+  <div><p class="fg-title">LightBearer<sup style="font-size:12px">TM</sup></p>
+  <p class="fg-sub">Recognize the concern. Respond in scope. Refer safely.</p></div>
+</div>
+
+<div class="fg-meter" id="fgMeter"></div>
+<div class="fg-scope"><b>Recognition, not diagnosis.</b> This guide helps a chaplain recognize a concern and respond within spiritual-care scope. It is not a diagnostic or assessment tool.</div>
+
+<div class="fg-searchwrap">
+  <input id="fgSearch" class="fg-search" placeholder='Type a topic or what you heard - e.g. "suicide", "moral injury", "no reason to go home"' autocomplete="off">
+  <button id="fgGo" class="fg-btn">Search</button>
+  <div id="fgDrop" class="fg-drop" style="display:none"></div>
+</div>
+<div class="fg-toolbar">
+  <span>Show:</span>
+  <button class="fg-tg tier" data-tier="complete">Complete</button>
+  <button class="fg-tg tier" data-tier="encounter">Encounter</button>
+  <button class="fg-tg tier" data-tier="brief">Brief</button>
+  <button class="fg-tg tier" data-tier="soon">Coming soon</button>
+</div>
+
+<div id="fgResults"></div>
+<div id="fgDetail"><div class="fg-empty">Type a topic above and press Search to open its guide.</div></div>
+
+<div class="fg-foot">
+  &copy; 2026 Marsh Institute for Chaplains. Chaplain Resource Network is an initiative of the Marsh Institute for Chaplains. All rights reserved.<br>
+  For recognition and safe referral only. In an emergency, use your setting's emergency response process.
+</div>
+</div>
+
+<script>
+(function(){
+  var SUPA="https://jkrzwacmslqazwwsqsar.supabase.co";
+  var KEY="sb_publishable_wfblLlGRG-qcRtV-QAeHpQ_3KFy0XCR";
+  var RENEW_URL="https://ken-schlenker-f253.mykajabi.com/field-guide";
+  var SUBSCRIBE_URL="https://www.chaplainresourcenetwork.com/offers/yg8Z2imT/checkout";
+  var TIERS_URL="https://www.chaplainresourcenetwork.com/chaplain-resource-network"; // TODO: point to the CRN membership-tiers/plans page once the founders finalize the buckets
+  var DEMO=false;           // metering ENFORCED (3/mo, 18 total). Hidden "reset" refills.
+  var activeTier="all";     // completeness filter: all|complete|encounter|brief|soon
+  var currentIssue=null;    // tracks the open guide so level-switches don't re-charge
+  var R=document.getElementById("crn-fg-root");
+  var elMeter=R.querySelector("#fgMeter"),elRes=R.querySelector("#fgResults"),elDet=R.querySelector("#fgDetail"),
+      elS=R.querySelector("#fgSearch"),elGo=R.querySelector("#fgGo"),elDrop=R.querySelector("#fgDrop");
+  function tierOf(x){return x.has_verbatim&&x.has_brief?'complete':x.has_verbatim?'encounter':x.has_brief?'brief':'soon';}
+  function tierFilter(rows){return (activeTier==='all'||!Array.isArray(rows))?rows:rows.filter(function(x){return tierOf(x)===activeTier;});}
+  var LAMP='<svg class="fg-lampico" viewBox="0 0 48 48"><ellipse cx="24" cy="30" rx="11" ry="10" fill="#d99a2b"/><ellipse cx="24" cy="30" rx="6" ry="6" fill="#fff3d6"/><path d="M14 12h20l3 9H11z" fill="#16283f"/></svg>';
+  function esc(s){return (s==null?"":String(s)).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];});}
+  function cid(){var k="crn_fg_cid";var v;try{v=localStorage.getItem(k);}catch(e){}if(!v){v="fg-"+Date.now().toString(36)+"-"+Math.random().toString(36).slice(2,10);try{localStorage.setItem(k,v);}catch(e){}}return v;}
+  var CID=cid();
+
+  // ---- Login-bound metering: prefer the Kajabi MEMBER identity over the browser cid ----
+  // Real per-member enforcement activates automatically the moment a member context is present.
+  // Sanctioned integration point (no Kajabi write in this task): once the tool sits behind the
+  // login-gated product, the Kajabi lesson's loader/custom-code block should set, BEFORE this
+  // widget's script runs, e.g. via Liquid server-side render:
+  //   window.__CRN_MEMBER__ = { id: "{{ member.id }}", email: "{{ member.email }}" };
+  // Until that exists on a page, MEMBER below is null and every RPC call falls back to CID
+  // (today's behavior) — nothing breaks pre-gating.
+  function detectMember(){
+    try{
+      var m=window.__CRN_MEMBER__;
+      if(!m){
+        // defensive fallbacks in case a future embed exposes member context under a different
+        // conventional name; each is a no-op today (none of these exist on the current page)
+        if(window.Kajabi&&(window.Kajabi.member||window.Kajabi.currentUser)) m=window.Kajabi.member||window.Kajabi.currentUser;
+        else if(document.body&&(document.body.dataset.memberId||document.body.dataset.memberEmail)) m={id:document.body.dataset.memberId,email:document.body.dataset.memberEmail};
+        else{
+          var metaId=document.querySelector('meta[name="kjb-member-id"]'),metaEm=document.querySelector('meta[name="kjb-member-email"]');
+          if(metaId||metaEm) m={id:metaId&&metaId.content,email:metaEm&&metaEm.content};
+        }
+      }
+      if(!m)return null;
+      var id=m.id!=null?String(m.id).trim():"",email=m.email?String(m.email).trim().toLowerCase():"";
+      if(!id&&!email)return null;
+      return {key:id?("kj:"+id):("em:"+email),email:email||null};
+    }catch(e){return null;}
+  }
+  var MEMBER=detectMember();
+  function withMember(body){body=body||{};if(MEMBER&&MEMBER.key){body.p_member_key=MEMBER.key;if(MEMBER.email)body.p_member_email=MEMBER.email;}return body;}
+
+  function rpc(fn,body){return fetch(SUPA+"/rest/v1/rpc/"+fn,{method:"POST",headers:{apikey:KEY,Authorization:"Bearer "+KEY,"Content-Type":"application/json"},body:JSON.stringify(body||{})}).then(function(r){return r.json();});}
+
+  function renderMeter(s){
+    if(!s||!s.ok){elMeter.innerHTML="";return;}
+    if(s.expired&&!DEMO){elMeter.innerHTML='<span class="fg-pill">Access expired</span>';return;}
+    var monthRemain=Math.min(s.remaining_month==null?3:s.remaining_month,s.dl_remaining_month==null?3:s.dl_remaining_month);
+    var termRemain=Math.min(s.remaining_total==null?18:s.remaining_total,s.dl_remaining_total==null?18:s.dl_remaining_total);
+    elMeter.innerHTML='<span class="fg-pill">Searches &amp; Downloads left this month: <b>'+monthRemain+' / 3</b></span>'
+      +'<span class="fg-pill"><b>'+termRemain+' / 18</b> over 6 months</span>'
+      +'<span style="color:#9a8f79">Search subscription: $19.99/mo, 6-month access</span>';
+  }
+  function loadMeter(){rpc("fg_status",withMember({p_client:CID})).then(renderMeter);}
+
+  function shl(v){var r="";if(v.see)r+='<b>See</b><span>'+esc(v.see)+'</span>';if(v.hear)r+='<b>Hear</b><span>'+esc(v.hear)+'</span>';if(v.sense)r+='<b>Sense (emotions)</b><span>'+esc(v.sense)+'</span>';if(v.learn)r+='<b>Learn (life situations)</b><span>'+esc(v.learn)+'</span>';return r?'<div class="fg-sshl">'+r+'</div>':'';}
+
+  // ---- Lessons dropdown: catalog description + objectives + Purchase CTA, always routes to a lesson SALES PAGE first (never straight to checkout) ----
+  function lessonCard(l,i){
+    var title=(l&&l.title)||i.title;
+    var desc=(l&&l.description)||i.description||'[catalog pending]';
+    var objRaw=(l&&l.objectives)||('[catalog pending]'+(i.plo?' — aligned to Program Learning Outcome '+i.plo:''));
+    var slug=String(i.issue_id).toLowerCase();
+    var salesUrl='https://f005.backblazeb2.com/file/crain-media/crn-field-guide/lessons/'+slug+'.html?v=2026071403c';
+    var hasBuy=!!(l&&l.checkout_url);
+    var ctaLabel=hasBuy?'Purchase this lesson':'Coming soon — learn more';
+    return '<div class="fg-lesson-card" style="border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin-bottom:8px;background:#fff">'
+      +'<div style="font-weight:700;font-size:13.5px;color:var(--ink)">'+esc(title)+(hasBuy?'':' <span class="fg-soonbadge" style="margin-left:6px">Coming soon</span>')+'</div>'
+      +'<p style="margin:6px 0 4px;font-size:13px;color:var(--ink2)">'+esc(desc)+'</p>'
+      +'<p style="margin:0 0 8px;font-size:12.5px;color:var(--ink2)"><b>Learning objectives:</b> '+esc(objRaw)+'</p>'
+      +'<a class="fg-linkbtn" href="'+salesUrl+'" target="_blank" rel="noopener" style="padding:6px 14px;font-size:12.5px">'+ctaLabel+'</a>'
+      +'</div>';
+  }
+  function lessonsHtml(les,i){
+    if(Array.isArray(les)&&les.length)return les.map(function(l){return lessonCard(l,i);}).join('');
+    return lessonCard(null,i); // state-aware: no lessons built yet, still show description + objectives + coming-soon CTA
+  }
+
+  // ---- predictive type-ahead (free) ----
+  var tmr=null;
+  elS.addEventListener("input",function(){
+    var q=elS.value.trim();
+    if(tmr)clearTimeout(tmr);
+    if(q.length<2||q.toLowerCase()==="reset"){elDrop.style.display="none";return;}
+    tmr=setTimeout(function(){
+      rpc("suggest_issues",{q:q,p_built_only:false}).then(function(rows){
+        rows=tierFilter(rows);
+        if(!Array.isArray(rows)||!rows.length){elDrop.style.display="none";return;}
+        var h="";rows.forEach(function(x){
+          var st=x.has_verbatim&&x.has_brief?['Complete','ok']:x.has_verbatim?['Encounter','part']:x.has_brief?['Brief','part']:['Coming soon','no'];
+          h+='<div class="it" data-id="'+esc(x.issue_id)+'"><span class="kw">'+esc(x.matched)+'</span><span class="ti">'+esc(x.title)+'</span><span class="fg-st '+st[1]+'" style="margin-left:auto">'+st[0]+'</span></div>';
+        });
+        elDrop.innerHTML=h;elDrop.style.display="";
+        Array.prototype.forEach.call(elDrop.querySelectorAll(".it"),function(it){it.onclick=function(){elDrop.style.display="none";elS.value="";runSearch(it.getAttribute("data-id"));};});
+      });
+    },170);
+  });
+  document.addEventListener("click",function(e){if(!elDrop.contains(e.target)&&e.target!==elS)elDrop.style.display="none";});
+
+  // ---- Search action ----
+  function runSearch(directIssue){
+    elDrop.style.display="none";
+    var q=elS.value.trim();
+    // hidden maintenance command (undocumented): reset the counters silently
+    if(q.toLowerCase()==="mar$h"){rpc("fg_reset",withMember({p_client:CID})).then(function(){elS.value="";loadMeter();});return;}
+    // searching + browsing + predictions are FREE. The metered action is opening a BUILT guide (see openGuide).
+    if(directIssue)return openGuide(directIssue,null,false);
+    if(!q)return;
+    elRes.innerHTML="";elDet.innerHTML='<div class="fg-loading">Searching...</div>';
+    rpc("search_issue_guides",{q:q,p_domain:null,p_built_only:false}).then(function(rows){
+      rows=tierFilter(rows);
+      if(!Array.isArray(rows)||!rows.length){elDet.innerHTML='<div class="fg-empty">No matching guide. Try a different word or tier.</div>';return;}
+      openGuide(rows[0].issue_id,null,false,rows);
+    });
+  }
+  function gate(a){
+    elRes.innerHTML="";
+    var msg=a.reason==="monthly_cap"?"You have opened all 3 guides for this month.":a.reason==="total_cap"?"You have opened all 18 guides in your 6-month term.":a.reason==="expired"?"Your 6-month access has ended.":"Access is unavailable.";
+    elDet.innerHTML='<div class="fg-sec" style="text-align:center;border-top:5px solid var(--gold)">'+LAMP+'<h3 style="margin:6px 0">'+esc(msg)+'</h3><div style="font-size:30px;font-weight:800">$19.99<span style="font-size:15px;color:#8a7f6a">/mo</span></div><p style="color:var(--ink2)">6-month access &middot; 3 guides per month &middot; 3 downloads per month</p><a class="fg-linkbtn" href="'+SUBSCRIBE_URL+'">Subscribe to search</a></div>';
+  }
+
+  function doDownload(id,pdf){
+    if(!pdf){alert("A downloadable PDF for this issue is in production.");return;}
+    if(DEMO){window.open(pdf,"_blank");return;}
+    rpc("fg_consume_download",withMember({p_client:CID})).then(function(a){loadMeter();
+      if(!a||!a.allowed){alert(a&&a.reason==="monthly_cap"?"You have used all 3 downloads this month. They reset next month, or upgrade to a CRN membership tier.":"Downloads are unavailable — your subscription may have ended. Renew to continue.");return;}
+      window.open(pdf,"_blank");});
+  }
+  function matchBar(rows,activeId){
+    if(!rows||rows.length<2)return"";
+    var h='<div style="display:flex;gap:6px;flex-wrap:wrap;margin:0 0 14px">';
+    rows.slice(0,8).forEach(function(x){h+='<button class="fg-tag'+(x.issue_id===activeId?' brief':'')+'" data-id="'+esc(x.issue_id)+'" style="cursor:pointer;border:1px solid #e5ddcf">'+esc(x.title.slice(0,34))+(x.title.length>34?'...':'')+(x.built===false?' (soon)':'')+'</button>';});
+    return h+'</div>';
+  }
+
+  function openGuide(id,level,isExample,rows){
+    elRes.innerHTML="";if(!elDet.querySelector('.fg-detail')){elDet.innerHTML='<div class="fg-loading">Loading guide...</div>';}
+    rpc("get_issue_guide",{p_issue_id:id,p_level:level==null?null:level}).then(function(g){
+      if(!g||!g.issue){elDet.innerHTML='<div class="fg-empty">Guide not found.</div>';return;}
+      var i=g.issue,v=g.verbatim,b=g.brief,cl=g.claims||[],ci=g.citations||[],les=g.lessons||[],smb=g.sme_briefs||[];
+      var lad=g.ladder||[],avail=g.levels_available||[],vlv=v?v.level:null;
+      var isBuilt=!!(v||b||smb.length);
+      var scope=(v&&v.scope_note)||(b&&b.scope_guardrail)||"Recognize the concern, ask only what is appropriate for a chaplain, offer spiritual care with consent, and refer to the right professional. Do not diagnose or assess clinical risk.";
+      var kws=(g.keywords||[]);
+      var freeView = DEMO || isExample || !isBuilt || (currentIssue===id);
+      currentIssue=id;
+      var doRender=function(){
+      var h='<div class="fg-detail">';
+      if(rows&&rows.length>1)h+=matchBar(rows,id);
+      if(isExample)h+='<span class="fg-exbadge">Completed example</span>';
+      h+='<div class="topicline">'+esc((g.topic&&g.topic.name)||"General")+'</div>';
+      h+='<h2>LightBearer<sup style="font-size:13px">TM</sup>: '+esc(i.title)+'</h2>';
+      h+='<p class="fg-note" style="margin:-6px 0 12px;font-style:italic">A Brief Chaplain Resource for Recognition, Care, and Referral</p>';
+      var lv=(avail&&avail.length)||0, hasB=!!(b||cl.length||smb.length);
+      var rvs=g.review_sections||[], cov=g.coverage||[];
+      h+='<div class="fg-status">'
+        +'<span class="fg-st '+(v?'ok':'no')+'">Typical encounter: '+(v?(lv+' level'+(lv===1?'':'s')):'in production')+'</span>'
+        +'<span class="fg-st '+(hasB?'ok':'no')+'">Research brief: '+(hasB?'available':'in progress')+'</span>'
+        +'<span class="fg-st '+(les.length?'ok':'no')+'">Lessons: '+(les.length?les.length:'none')+'</span>'
+        +'</div>';
+      if(kws.length){h+='<div style="margin:2px 0 8px">';kws.forEach(function(k){h+='<span class="fg-kw">'+esc(k)+'</span>';});h+='</div>';}
+      if(g.pdf_url)h+='<div style="margin:0 0 10px"><button class="fg-linkbtn fgdl" data-iss="'+esc(i.issue_id)+'" style="padding:7px 14px;font-size:12.5px;border:0;cursor:pointer;background:var(--gold-d)">Download this guide (PDF)</button> <span style="font-size:12px;color:#8a7f6a">this guide &middot; included with your search subscription (3 downloads/month)</span></div>';
+      h+='<div style="margin:0 0 16px"><button type="button" class="fg-lessons-toggle" style="background:#fff;border:1px solid var(--line);border-radius:8px;padding:6px 13px;font-size:12.5px;font-weight:600;color:var(--ink2);cursor:pointer">Lessons ('+(les.length||'none yet')+') <span style="font-size:10px">&#9662;</span></button>'
+        +'<div class="fg-lessons-drop" style="display:none;margin-top:8px">'+lessonsHtml(les,i)+'</div></div>';
+
+      // BAND 1 - IN THE MOMENT (just-in-time, lay)
+      h+='<div class="fg-band"><span class="fg-bandlab">In the moment</span><span class="fg-bandsub">Just-in-time - what to do right now</span></div>';
+      h+='<div class="fg-act"><div class="lab">Scope &amp; Safety - respond and refer</div><p>'+esc(scope)+'</p></div>';
+      if(v&&(v.see||v.hear||v.sense||v.learn))h+='<div class="fg-sec" style="border-left:4px solid var(--gold)"><h4>'+LAMP+'Recognize - what you may see or hear</h4>'+shl(v)+'</div>';
+
+      // BAND 2 - SEE IT (the encounter)
+      h+='<div class="fg-band"><span class="fg-bandlab">See it</span><span class="fg-bandsub">A typical encounter, by formation level</span></div>';
+      var tabs="";
+      if(lad.length){tabs='<div class="fg-ladder">';lad.forEach(function(L){var on=(vlv===L.level),has=avail.indexOf(L.level)>=0;tabs+='<button class="fg-lvl'+(on?' on':'')+(has?'':' dim')+'" data-lvl="'+L.level+'" data-iss="'+esc(i.issue_id)+'"'+(has?'':' disabled')+'><span class="ll">Level '+L.level+'</span><span class="lb">'+esc(L.label||'')+'</span></button>';});tabs+='</div>';for(var z=0;z<lad.length;z++){if(lad[z].level===vlv&&lad[z].focus){tabs+='<p class="fg-note" style="margin:8px 0 0">'+esc(lad[z].focus)+'</p>';}}}
+      h+='<div class="fg-sec"><h4>'+LAMP+'Typical Encounter'+(v&&v.formation_label?' - '+esc(v.formation_label):'')+'</h4>'+tabs;
+      if(v){if(v.setting)h+='<div style="font-size:12.5px;color:#8a7f6a;margin:10px 0 6px">'+esc(v.setting)+'</div>';if(v.summary)h+='<p style="margin:0 0 10px;font-size:14px">'+esc(v.summary)+'</p>';h+=shl(v);(v.transcript||[]).forEach(function(t,ix){if(ix===0)h+='<div style="margin-top:10px">';var pt=(t.speaker&&t.speaker.toLowerCase().indexOf("chapl")<0);h+='<div class="fg-beat"><div class="who'+(pt?' pt':'')+'">'+esc(t.speaker)+'</div><div class="ln">'+esc(t.line)+'</div>'+(t.note?'<div class="nt">'+esc(t.note)+'</div>':'')+'</div>';});if(v.transcript&&v.transcript.length)h+='</div>';if(v.reflection)h+='<p class="fg-note" style="margin-top:12px">'+esc(v.reflection)+'</p>';h+='<p class="fg-note">'+esc(v.anon_note||"Composite illustration. Not a real person.")+'</p>';}
+      else{h+='<p class="fg-note" style="margin:10px 0 0">A typical-encounter verbatim for this level is in production.</p>';}
+      h+='</div>';
+
+      // BAND 3 - UNDERSTAND IT
+      if(i.description){h+='<div class="fg-band"><span class="fg-bandlab">Understand it</span><span class="fg-bandsub">What this issue is, in plain language</span></div><div class="fg-sec"><h4>'+LAMP+'Overview</h4><p style="margin:0;font-size:14px">'+esc(i.description)+'</p></div>';}
+
+      // BAND 4 - THE EVIDENCE (academic)
+      if(b||cl.length||ci.length||rvs.length)h+='<div class="fg-band"><span class="fg-bandlab">The evidence</span><span class="fg-bandsub">For deeper and academic study</span></div>';
+      h+='<div class="fg-sec"><h4>'+LAMP+'Research Brief</h4>';
+      if(b||cl.length||ci.length){
+        if(b&&(b.author||b.brief_date))h+='<p class="fg-note" style="margin:0 0 8px">'+esc(b.author||'')+(b.brief_date?' &middot; '+esc(b.brief_date):'')+'</p>';
+        if(b&&b.clinical_question)h+='<p style="margin:0 0 10px;font-size:14px"><b>Question:</b> '+esc(b.clinical_question)+'</p>';
+        if(cl.length){h+='<div class="fg-sublab" style="margin:6px 0 2px">Key findings</div>';cl.forEach(function(c){h+='<div class="fg-claim">'+esc(c.claim)+(c.grade?'<span class="fg-grade">'+esc(c.grade)+'</span>':'')+'</div>';});}
+        if(b&&b.gaps)h+='<div class="fg-sub"><div class="fg-sublab">Evidence gaps</div>'+esc(b.gaps)+'</div>';
+        if(b&&b.disagreements)h+='<div class="fg-sub"><div class="fg-sublab">Where the literature disagrees</div>'+esc(b.disagreements)+'</div>';
+        if(b&&b.traditions_not_represented)h+='<div class="fg-sub"><div class="fg-sublab">Traditions not yet represented</div>'+esc(b.traditions_not_represented)+'</div>';
+        if(ci.length){var cis=ci.slice().sort(function(a,b){var ka=((a.authors||a.title||'')+'').toLowerCase(),kb=((b.authors||b.title||'')+'').toLowerCase();return ka<kb?-1:(ka>kb?1:0);});h+='<div class="fg-sublab" style="margin:16px 0 4px">Cited Evidence ('+cis.length+') &mdash; Turabian</div>';cis.forEach(function(c){var au=((c.authors||'')+'').replace(/\.\s*$/,''),ti=((c.title||c.citation||'')+'').replace(/\.\s*$/,''),jo=c.journal||'',yr=c.year,doi=c.doi||'',u=c.url||(doi?'https://doi.org/'+doi:'');var s='';if(au)s+=esc(au)+'. ';if(ti)s+='&ldquo;'+esc(ti)+'.&rdquo; ';if(jo)s+='<i>'+esc(jo)+'</i>'+(yr?' ('+esc(yr)+')':'')+'. ';else if(yr)s+='('+esc(yr)+'). ';if(u)s+='<a href="'+esc(u)+'" target="_blank" rel="noopener">'+esc(u)+'</a>.';else s+='<span style="color:#a3261c">[no public link on file]</span>';h+='<div class="fg-cite">'+s+'</div>';});}
+      } else {h+='<p class="fg-note" style="margin:0">A verified research brief for this issue is in progress.</p>';}
+      h+='</div>';
+      if(rvs.length){h+='<div class="fg-sec"><h4>'+LAMP+'Evidence &amp; QC Review</h4>';rvs.forEach(function(rs){var html=(rs.html||'').trim();if(html)h+='<div style="margin-bottom:12px"><div class="fg-sublab">'+esc(rs.title||rs.key)+'</div><div class="rvhtml" style="font-size:13.5px;color:var(--ink2)">'+html+'</div></div>';});h+='</div>';}
+
+      // BAND 5 - STANDARDS & DELIVERY (academic / institutional)
+      var meta=[];
+      if(i.cpe_levels)meta.push(['CPE levels',i.cpe_levels]);
+      if(i.plo)meta.push(['Outcomes',i.plo]);
+      if(i.category)meta.push(['Category',i.category+(i.subcategory?' / '+i.subcategory:'')]);
+      if(i.population_label)meta.push(['Population',i.population_label]);
+      if(g.ceu)meta.push(['CEU',g.ceu+' per lesson']);
+      if(meta.length||cov.length||smb.length||les.length)h+='<div class="fg-band"><span class="fg-bandlab">Standards &amp; delivery</span><span class="fg-bandsub">Accreditation, coverage, and lessons</span></div>';
+      if(meta.length){h+='<div class="fg-sec"><h4>'+LAMP+'Standards &amp; Accreditation</h4><div class="fg-metarow">';meta.forEach(function(m){h+='<span class="m"><b>'+esc(m[0])+':</b> '+esc(m[1])+'</span>';});h+='</div></div>';}
+      if(cov.length){h+='<div class="fg-sec"><h4>'+LAMP+'Field Coverage</h4><div>';cov.forEach(function(c){h+='<span class="fg-kw" style="text-transform:none">'+esc(c)+'</span>';});h+='</div><p class="fg-note">Contexts with built lesson content for this issue.</p></div>';}
+      h+='<div class="fg-sec" style="border-top:4px solid var(--gold)"><h4 style="justify-content:center;text-align:center">'+LAMP+'Full Access &mdash; CRN Membership</h4>'
+        +'<p style="text-align:center;font-size:14px;margin:0 0 12px">You have the search subscription. To open the complete brief, all cited sources, and the video lessons, choose a membership:</p>'
+        +'<div class="fg-buckets">'
+        +'<div class="fg-bucket"><div class="bk">Specialty Collection</div><div class="bpr">$259/yr</div><ul><li>One field&rsquo;s entire catalog (e.g. Public Safety)</li><li>Member bots + Request-a-Chaplain</li></ul><a class="fg-linkbtn" href="https://www.chaplainresourcenetwork.com/offers/H2bb29TC/checkout">Choose</a></div>'
+        +'<div class="fg-bucket"><div class="bk">Foundations</div><div class="bpr">$349/yr &middot; $35/mo</div><ul><li>Full catalog, every field</li><li>CE Certificates of Completion</li><li>Lesson Tutor + CE/Credential Navigator</li></ul><a class="fg-linkbtn" href="https://www.chaplainresourcenetwork.com/offers/u5Jjz2Mz/checkout">Choose</a></div>'
+        +'<div class="fg-bucket"><div class="bk">Practitioner &#9733;</div><div class="bpr">$649/yr &middot; $65/mo</div><ul><li>Everything in Foundations</li><li>Charting/Assessment Assistant + Field Care Companion</li><li>CPE Scenario Trainer + quarterly cohort</li></ul><a class="fg-linkbtn" href="https://www.chaplainresourcenetwork.com/offers/EDxEM8v5/checkout">Choose</a></div>'
+        +'<div class="fg-bucket"><div class="bk">Formation</div><div class="bpr">$949/yr &middot; $89/mo</div><ul><li>Everything, plus research engines</li><li>Multi-Faith Research Assistant + Research Brief Engine</li><li>Formation pathway + certificate</li></ul><a class="fg-linkbtn" href="https://www.chaplainresourcenetwork.com/offers/CfDkuhZR/checkout">Choose</a></div>'
+        +'</div>'
+        +'<div class="fg-bucket" style="margin-top:10px;text-align:center;border-top:3px solid var(--gold)"><div class="bk">Organizations &amp; Teams</div><p style="font-size:13px;color:var(--ink2);margin:4px 0 8px">Department, agency, seminary, or whole institution &mdash; seat licensing, admin dashboard, completion reporting, and accreditation-exhibit support, scaled to your size.</p><a class="fg-linkbtn" href="https://calendly.com/jbrowning_marshinstitute" style="align-self:center">Schedule a call to discuss</a></div>'
+        +'<p class="fg-note" style="text-align:center;margin-top:10px">CE contact hours on every paid lesson. IACET CEU via CPEI. Founding members lock reduced rates for life.</p></div>';
+      h+='</div>';
+      elDet.innerHTML=h;
+      Array.prototype.forEach.call(elDet.querySelectorAll(".fg-lvl:not([disabled])"),function(bx){bx.onclick=function(){openGuide(bx.getAttribute("data-iss"),parseInt(bx.getAttribute("data-lvl"),10),isExample,rows);};});
+      Array.prototype.forEach.call(elDet.querySelectorAll(".fg-tag[data-id]"),function(bx){bx.onclick=function(){openGuide(bx.getAttribute("data-id"),null,false,rows);};});
+      Array.prototype.forEach.call(elDet.querySelectorAll(".fgdl"),function(bx){bx.onclick=function(){doDownload(bx.getAttribute("data-iss"),g.pdf_url);};});
+      Array.prototype.forEach.call(elDet.querySelectorAll(".fg-lessons-toggle"),function(bx){bx.onclick=function(){var d=bx.parentElement.querySelector(".fg-lessons-drop");if(d)d.style.display=(d.style.display==="none"?"":"none");};});
+      };
+      if(freeView){doRender();return;}
+      rpc("fg_consume_search",withMember({p_client:CID})).then(function(a){loadMeter();if(!a||!a.allowed){return gate(a||{});}doRender();});
+    }).catch(function(){elDet.innerHTML='<div class="fg-empty">Could not load this guide.</div>';});
+  }
+
+  function renderList(rows,label){
+    elRes.innerHTML="";
+    if(!rows.length){elDet.innerHTML='<div class="fg-empty">Nothing in '+esc(label)+' yet.</div>';return;}
+    var h='<div style="font-weight:700;color:var(--ink);margin:6px 0 12px;font-size:15px">'+rows.length+' '+esc(label)+' topic'+(rows.length===1?'':'s')+'</div><div class="fg-list">';
+    rows.forEach(function(x){var t=tierOf(x);var st=t==='complete'?['Complete','ok']:t==='encounter'?['Encounter','part']:t==='brief'?['Brief','part']:['Coming soon','no'];
+      h+='<div class="fg-card" data-id="'+esc(x.issue_id)+'"><h3>'+esc(x.title)+'</h3><div class="meta" style="display:flex;gap:8px;align-items:center;font-size:12px;color:#8a7f6a;margin-top:3px"><span class="fg-tag">'+esc(x.topic||'')+'</span><span class="fg-st '+st[1]+'">'+st[0]+'</span></div></div>';});
+    h+='</div>';elDet.innerHTML=h;
+    Array.prototype.forEach.call(elDet.querySelectorAll(".fg-card[data-id]"),function(c){c.onclick=function(){openGuide(c.getAttribute("data-id"),null,false);};});
+  }
+  function showList(tier){
+    elRes.innerHTML="";elDet.innerHTML='<div class="fg-loading">Loading topics...</div>';
+    rpc("search_issue_guides",{q:null,p_domain:null,p_built_only:(tier!=='soon'&&tier!=='all')}).then(function(rows){
+      if(!Array.isArray(rows))rows=[];
+      var f=tier==='all'?rows:rows.filter(function(x){return tierOf(x)===tier;});
+      var label=tier==='complete'?'Complete':tier==='encounter'?'Encounter':tier==='brief'?'Brief':tier==='soon'?'Coming-soon':'catalog';
+      renderList(f,label);
+    });
+  }
+  function ph(){try{parent.postMessage({crnFG:1,h:(R.scrollHeight||600)+40},"*");}catch(e){}}
+  setInterval(ph,500);
+
+  Array.prototype.forEach.call(R.querySelectorAll(".fg-tg.tier"),function(bt){bt.onclick=function(){var t=bt.getAttribute("data-tier");elDrop.style.display="none";
+    if(activeTier===t){activeTier='all';bt.classList.remove("on");if(elS.value.trim())runSearch(null);else elDet.innerHTML='<div class="fg-empty">Type a topic above, or pick a tier to browse.</div>';return;}
+    activeTier=t;Array.prototype.forEach.call(R.querySelectorAll(".fg-tg.tier"),function(x){x.classList.remove("on");});bt.classList.add("on");
+    if(elS.value.trim())runSearch(null);else showList(t);};});
+  elGo.onclick=function(){runSearch(null);};
+  elS.addEventListener("keydown",function(e){if(e.key==="Enter"){elDrop.style.display="none";runSearch(null);}});
+  loadMeter();
+  // first visit shows an empty prompt - nothing is requested, nothing is shown
+})();
+</script>

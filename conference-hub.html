@@ -1,0 +1,244 @@
+<meta charset="utf-8">
+<!-- CRN Conference Hub (native render, no iframe). Featured functional area: Public Safety, for ICPC 2026 (Spokane, Jul 19-25). (c) 2026 Marsh Institute for Chaplains. -->
+<div id="crn-cfh-root">
+<style>
+#crn-cfh-root{--ink:#16283f;--ink2:#33475f;--gold:#d99a2b;--gold-d:#b87f1c;--cream:#f7f4ee;--card:#fff;--line:#e5ddcf;--green:#2f6b3f;--soon:#8a7f6a;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:var(--cream);margin:0 auto;max-width:1100px;padding:0 16px 48px;line-height:1.55;-webkit-font-smoothing:antialiased}
+#crn-cfh-root *{box-sizing:border-box}
+#crn-cfh-root a{color:var(--gold-d)}
+.cfh-hero{text-align:center;padding:30px 12px 18px}
+.cfh-eyebrow{font-size:12px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold-d);margin:0 0 8px}
+.cfh-h1{font-size:30px;font-weight:800;letter-spacing:-.5px;margin:0 0 8px}
+.cfh-sub{font-size:15.5px;color:var(--ink2);max-width:720px;margin:0 auto 6px}
+.cfh-meet{font-size:14px;color:var(--green);font-weight:700;margin-top:6px}
+.cfh-selector{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 22px;margin:18px 0;display:flex;flex-wrap:wrap;align-items:center;gap:12px}
+.cfh-selector label{font-size:12.5px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;color:var(--gold-d)}
+.cfh-selector select{font-size:15px;font-weight:600;color:var(--ink);background:var(--cream);border:1px solid var(--line);border-radius:8px;padding:9px 14px;flex:1;min-width:220px}
+.cfh-note{font-size:12.5px;color:var(--soon);margin-left:auto}
+.cfh-sec{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px 24px;margin:16px 0}
+.cfh-sec h2{font-size:12.5px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;color:var(--gold-d);margin:0 0 4px}
+.cfh-sec h3{font-size:15px;font-weight:700;color:var(--ink);margin:18px 0 8px}
+.cfh-sec h3:first-of-type{margin-top:4px}
+.cfh-lead{font-size:14px;color:var(--ink2);margin:0 0 14px}
+table.cfh-table{width:100%;border-collapse:collapse;font-size:14px;margin-bottom:4px}
+table.cfh-table th{text-align:left;font-size:11.5px;letter-spacing:.6px;text-transform:uppercase;color:var(--soon);border-bottom:2px solid var(--line);padding:8px 8px}
+table.cfh-table td{padding:9px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+table.cfh-table tr:last-child td{border-bottom:none}
+.cfh-code{font-weight:700;color:var(--ink2);white-space:nowrap}
+.cfh-missing{color:var(--soon);font-style:italic}
+.cfh-cta{display:inline-block;background:var(--ink);color:#fff !important;text-decoration:none;font-weight:700;font-size:14px;padding:10px 20px;border-radius:10px;margin:4px 8px 4px 0}
+.cfh-cta:hover{background:#0f1d30}
+.cfh-cta.alt{background:transparent;color:var(--ink) !important;border:1px solid var(--line)}
+.cfh-plans{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.cfh-plans a{font-size:13px;font-weight:600;background:var(--cream);border:1px solid var(--line);border-radius:8px;padding:7px 12px;text-decoration:none;color:var(--ink) !important}
+.cfh-soon{text-align:center;padding:44px 20px}
+.cfh-soon h3{font-size:20px;margin:0 0 8px}
+.cfh-soon p{color:var(--ink2);font-size:14.5px;max-width:520px;margin:0 auto 14px}
+.cfh-badge{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.8px;text-transform:uppercase;background:var(--gold);color:#3a2a06;border-radius:999px;padding:3px 10px;margin-bottom:10px}
+.cfh-footer{text-align:center;font-size:12px;color:var(--soon);margin-top:26px;padding-top:16px;border-top:1px solid var(--line)}
+.cfh-hide{display:none !important}
+</style>
+
+<div class="cfh-hero">
+  <div class="cfh-eyebrow">CRN at ICPC 2026 &middot; Spokane, WA</div>
+  <h1 class="cfh-h1">CRN Conference Hub</h1>
+  <p class="cfh-sub">International Conference of Police Chaplains &mdash; July 19&ndash;25, 2026. Every CRN Public Safety resource, in one place, for the field.</p>
+  <div class="cfh-meet">Meet us here &mdash; find CRN at the ICPC booth and sessions all week.</div>
+</div>
+
+<div class="cfh-selector">
+  <label for="cfhSelect">Highlighting</label>
+  <select id="cfhSelect">
+    <option value="public-safety">Public Safety (ICPC 2026 &mdash; featured)</option>
+    <option value="healthcare">Healthcare</option>
+    <option value="military">Military</option>
+    <option value="corrections">Corrections</option>
+    <option value="fire-ems">Fire / EMS</option>
+    <option value="behavioral-health">Behavioral Health</option>
+    <option value="community">Community</option>
+    <option value="disaster-response">Disaster Response</option>
+    <option value="education">Education</option>
+    <option value="corporate-marketplace">Corporate / Marketplace</option>
+    <option value="church">Church</option>
+  </select>
+  <span class="cfh-note">Each area gets its own Conference Hub over time &mdash; this selector is built to drop those in.</span>
+</div>
+
+<!-- ================= PUBLIC SAFETY (populated) ================= -->
+<div class="cfh-panel" data-area="public-safety">
+
+  <div class="cfh-sec">
+    <h2>Lessons &mdash; Live on CRN (chaplainresourcenetwork.com)</h2>
+    <p class="cfh-lead">Public Safety Chaplaincy series (PSC 01&ndash;11) + the Moral Injury anchor (OD 13). Each link opens the full lesson in Mindsmith preview mode &mdash; scroll through and walk people through it without taking the lesson (presenter sign-in required).</p>
+    <table class="cfh-table">
+      <tr><th>#</th><th>Lesson</th><th>Open (preview)</th></tr>
+      <tr><td class="cfh-code">PSC 01</td><td>Foundations of Professional Chaplaincy: Identity, Crisis, and Intervention</td><td><a href="https://app.mindsmith.ai/lesson/cmme9djmp02wsjr04bzi6pqgd" target="_blank" rel="noopener">Open lesson (preview)</a></td></tr>
+      <tr><td class="cfh-code">PSC 02</td><td>The Foundational Values of Public Safety Chaplaincy</td><td><a href="https://app.mindsmith.ai/lesson/cmm0krmdb00ugjx047zklhs4e" target="_blank" rel="noopener">Open lesson (preview)</a></td></tr>
+      <tr><td class="cfh-code">PSC 03</td><td>The Chaplain Philosophy of Ministry</td><td><a href="https://app.mindsmith.ai/lesson/cmm2316i600ymjp04agij25db" target="_blank" rel="noopener">Open lesson (preview)</a></td></tr>
+      <tr><td class="cfh-code">PSC 04</td><td>The CARE Method: A Framework for Crisis Intervention</td><td><a href="https://app.mindsmith.ai/lesson/cmm176nn100bwl104w0qy3bev" target="_blank" rel="noopener">Open lesson (preview)</a></td></tr>
+      <tr><td class="cfh-code">PSC 05</td><td>Psychological Impacts in Public Safety Careers</td><td><a href="https://app.mindsmith.ai/lesson/cmme99ttd02htjv04nkywjwwj" target="_blank" rel="noopener">Open lesson (preview)</a></td></tr>
+      <tr><td class="cfh-code">PSC 06</td><td>Resilience and Self-Care for Chaplains</td><td><a href="https://app.mindsmith.ai/lesson/cmme99ye801uhi804jo7o5kbf" target="_blank" rel="noopener">Open lesson (preview)</a></td></tr>
+      <tr><td class="cfh-code">PSC 07</td><td>Legal Foundations for Public Chaplaincy</td><td><a href="https://app.mindsmith.ai/lesson/cmme9a2oy01v1i804fpzrkyfl" target="_blank" rel="noopener">Open lesson (preview)</a></td></tr>
+      <tr><td class="cfh-code">PSC 08</td><td>Ethical Frameworks in Chaplaincy Practice</td><td><a href="https://app.mindsmith.ai/lesson/cmme9a6rx00vwjp04dami3yhv" target="_blank" rel="noopener">Open lesson (preview)</a></td></tr>
+      <tr><td class="cfh-code">PSC 09</td><td>Enhanced Communication Skills for Chaplaincy</td><td><a href="https://app.mindsmith.ai/lesson/cmme9aay502pul404yxk34bnh" target="_blank" rel="noopener">Open lesson (preview)</a></td></tr>
+      <tr><td class="cfh-code">PSC 10</td><td>First Responder Chaplaincy: High-Impact Scenarios</td><td><a href="https://app.mindsmith.ai/lesson/cmme9aeew02qml404csrhu6vx" target="_blank" rel="noopener">Open lesson (preview)</a></td></tr>
+      <tr><td class="cfh-code">PSC 11</td><td>First Responder Chaplaincy: Capstone Integration</td><td><a href="https://app.mindsmith.ai/lesson/cmm6rikrx00k4jd04p9dyfsbh" target="_blank" rel="noopener">Open lesson (preview)</a></td></tr>
+      <tr><td class="cfh-code">OD 13</td><td>Moral Injury in Chaplaincy Care (anchor lesson)</td><td><a href="https://app.mindsmith.ai/lesson/cmkel9rzm00injj048x135ovg" target="_blank" rel="noopener">Open lesson (preview)</a></td></tr>
+    </table>
+  </div>
+
+  <div class="cfh-sec">
+    <h2>Research Briefs</h2>
+    <p class="cfh-lead">Every brief behind the Public Safety lane, each with its canonical Google Doc + branded PDF.</p>
+    <h3>Core module briefs (mirror the 11-lesson PS spine + Moral Injury anchor)</h3>
+    <table class="cfh-table">
+      <tr><th>Code</th><th>Topic</th><th>Doc</th><th>PDF</th></tr>
+      <tr><td class="cfh-code">CRN-ISS-243</td><td>PSC 01 — Foundations of Professional Chaplaincy</td><td><a href="https://docs.google.com/document/d/1fzhfQ4UBthIB0O6xBphMHR9eNf10y4ot1PH8XZQiPqU/edit" target="_blank" rel="noopener">GDoc</a></td><td><a href="https://f005.backblazeb2.com/file/crain-media/crn-preview/internal/OUTPUTS/CRN/research-briefs/CRN-ISS-243-PS-Foundations-Crisis-Brief_2026-06-24_BRANDED.pdf" target="_blank" rel="noopener">PDF</a></td></tr>
+<tr><td class="cfh-code">CRN-ISS-242</td><td>PSC 02 — The Foundational Values of Public Safety Chaplaincy</td><td><a href="https://docs.google.com/document/d/19S3oAqTXjt7Kr5bXLr7gJjLEEaq_uz-rPisyA2TVGMs/edit" target="_blank" rel="noopener">GDoc</a></td><td><a href="https://f005.backblazeb2.com/file/crain-media/crn-preview/internal/OUTPUTS/CRN/research-briefs/CRN-ISS-242-PS-Foundational-Values-Brief_2026-06-24_BRANDED.pdf" target="_blank" rel="noopener">PDF</a></td></tr>
+<tr><td class="cfh-code">CRN-ISS-245</td><td>PSC 03 — The Chaplain Philosophy of Ministry</td><td><a href="https://docs.google.com/document/d/11fi690-7iUoTweJ1Y_5lSuDOWlr2OtQRYb5UhC0vJg8/edit" target="_blank" rel="noopener">GDoc</a></td><td><a href="https://f005.backblazeb2.com/file/crain-media/crn-preview/internal/OUTPUTS/CRN/research-briefs/CRN-ISS-245-PS-Philosophy-Ministry-Brief_2026-06-24_BRANDED.pdf" target="_blank" rel="noopener">PDF</a></td></tr>
+<tr><td class="cfh-code">CRN-ISS-240</td><td>PSC 04 — The CARE Method: A Framework for Crisis Intervention</td><td><a href="https://docs.google.com/document/d/15KVgdYFqxHhgjHnmEgCv9UzYwqIvRM7qT8fuU75m2wA/edit" target="_blank" rel="noopener">GDoc</a></td><td><a href="https://f005.backblazeb2.com/file/crain-media/crn-preview/internal/OUTPUTS/CRN/research-briefs/CRN-ISS-240-PS-Care-Method-Brief_2026-06-24_BRANDED.pdf" target="_blank" rel="noopener">PDF</a></td></tr>
+<tr><td class="cfh-code">PSC-191</td><td>PSC 05 — Psychological Impacts in Public Safety Careers</td><td><a href="https://docs.google.com/document/d/1lu5xqkeWZvjSSQ7Ot2ouEzjcKbrQ6RRpEhmAqBDqhEk/edit" target="_blank" rel="noopener">GDoc</a></td><td><a href="https://f005.backblazeb2.com/file/crain-media/crn-preview/internal/OUTPUTS/CRN/research-briefs/PSC-191-PS-PsychImpacts-Brief_2026-06-24_BRANDED.pdf" target="_blank" rel="noopener">PDF</a></td></tr>
+<tr><td class="cfh-code">PSC-192</td><td>PSC 06 — Resilience and Self-Care for Chaplains</td><td><a href="https://docs.google.com/document/d/1oPov3ovZ4hb2jh31RC2imZt80HeSZ3awfhbfQM2O_vA/edit" target="_blank" rel="noopener">GDoc</a></td><td><a href="https://f005.backblazeb2.com/file/crain-media/crn-preview/internal/OUTPUTS/CRN/research-briefs/PSC-192-PS-ResilienceSelfCare-Brief_2026-06-24_BRANDED.pdf" target="_blank" rel="noopener">PDF</a></td></tr>
+<tr><td class="cfh-code">PSC-193</td><td>PSC 07 — Legal Foundations for Public Chaplaincy</td><td><a href="https://docs.google.com/document/d/1L6oJcBBsnq07Vcf5NbQBCyAdDzy7I3DPiOshDkzmB1E/edit" target="_blank" rel="noopener">GDoc</a></td><td><a href="https://f005.backblazeb2.com/file/crain-media/crn-preview/internal/OUTPUTS/CRN/research-briefs/PSC-193-PS-LegalFoundations-Brief_2026-06-24_BRANDED.pdf" target="_blank" rel="noopener">PDF</a></td></tr>
+<tr><td class="cfh-code">PSC-194</td><td>PSC 08 — Ethical Frameworks in Chaplaincy Practice</td><td><a href="https://docs.google.com/document/d/18KtqyLte_gTu3F-qtJ-_TsJMkK_4shAPJVBngdQamV4/edit" target="_blank" rel="noopener">GDoc</a></td><td><a href="https://f005.backblazeb2.com/file/crain-media/crn-preview/internal/OUTPUTS/CRN/research-briefs/PSC-194-PS-EthicalFrameworks-Brief_2026-06-24_BRANDED.pdf" target="_blank" rel="noopener">PDF</a></td></tr>
+<tr><td class="cfh-code">CRN-ISS-241</td><td>PSC 09 — Enhanced Communication Skills for Chaplaincy</td><td><a href="https://docs.google.com/document/d/10ziAJkBpeGlpvXscGK4UKUaO6leUsL5RNngdhnGhcMQ/edit" target="_blank" rel="noopener">GDoc</a></td><td><a href="https://f005.backblazeb2.com/file/crain-media/crn-preview/internal/OUTPUTS/CRN/research-briefs/CRN-ISS-241-PS-Communication-Skills-Brief_2026-06-24_BRANDED.pdf" target="_blank" rel="noopener">PDF</a></td></tr>
+<tr><td class="cfh-code">CRN-ISS-244</td><td>PSC 10 — First Responder Chaplaincy: High-Impact Scenarios</td><td><a href="https://docs.google.com/document/d/1Q_RPlgtvUJvuY7AsLVEQ_xIv0mEfcXuJ2wOyDnJRYAk/edit" target="_blank" rel="noopener">GDoc</a></td><td><a href="https://f005.backblazeb2.com/file/crain-media/crn-preview/internal/OUTPUTS/CRN/research-briefs/CRN-ISS-244-PS-High-Impact-Brief_2026-06-24_BRANDED.pdf" target="_blank" rel="noopener">PDF</a></td></tr>
+<tr><td class="cfh-code">CRN-ISS-239</td><td>PSC 11 — First Responder Chaplaincy: Capstone Integration</td><td><a href="https://docs.google.com/document/d/1Gl-6cxrCQP-V9d0mcjBDXr1yoOEuzwKSJxmpH9UOSAQ/edit" target="_blank" rel="noopener">GDoc</a></td><td><a href="https://f005.backblazeb2.com/file/crain-media/crn-preview/internal/OUTPUTS/CRN/research-briefs/CRN-ISS-239-PS-Capstone-Brief_2026-06-24_BRANDED.pdf" target="_blank" rel="noopener">PDF</a></td></tr>
+<tr><td class="cfh-code">CRN-ISS-068</td><td>OD 13 — Moral Injury in Chaplaincy Care (anchor)</td><td><a href="https://docs.google.com/document/d/1_BZBLjOU4W19vossBIREnTT8E0KLnZBM6dNRcgkSju0/edit" target="_blank" rel="noopener">GDoc</a></td><td><a href="https://f005.backblazeb2.com/file/crain-media/crn-preview/internal/OUTPUTS/CRN/research-briefs/CRN-ISS-068-PS-Moral-Injury-Brief_2026-06-24_BRANDED.pdf" target="_blank" rel="noopener">PDF</a></td></tr>
+    </table>
+    <h3>Extended issue briefs (deep-dive care topics)</h3>
+    <table class="cfh-table">
+      <tr><th>Code</th><th>Topic</th><th>Doc</th><th>PDF</th></tr>
+      <tr><td class="cfh-code">CRN-ISS-001</td><td>Standing in the Gap: Suicide Risk and Intervention</td><td><a href="https://docs.google.com/document/d/1ebaULS7hTZADNwe_1zxh-p52UWSDQgV4tikQPGSl4WM/edit" target="_blank" rel="noopener">GDoc</a></td><td><a href="https://f005.backblazeb2.com/file/crain-media/crn-preview/internal/OUTPUTS/CRN/research-briefs/CRN-ISS-001-PS-Suicide-Risk-Prevention-Brief_2026-06-24_BRANDED.pdf" target="_blank" rel="noopener">PDF</a></td></tr>
+<tr><td class="cfh-code">CRN-ISS-002</td><td>After a Responder Suicide: Postvention</td><td><a href="https://docs.google.com/document/d/1biR4qMpMj7mxuyfgl0QyhaayhIOUtWTFZzPhrtauhao/edit" target="_blank" rel="noopener">GDoc</a></td><td><a href="https://f005.backblazeb2.com/file/crain-media/crn-preview/internal/OUTPUTS/CRN/research-briefs/CRN-ISS-002-PS-Suicide-Postvention-Brief_2026-06-23_BRANDED.pdf" target="_blank" rel="noopener">PDF</a></td></tr>
+<tr><td class="cfh-code">CRN-ISS-010</td><td>After the Funeral: Grief and Bereavement</td><td><a href="https://docs.google.com/document/d/1gweqte9zSQ16jdUG8EYOPmlDe64rJbg2ZikjguIPPVU/edit" target="_blank" rel="noopener">GDoc</a></td><td><a href="https://f005.backblazeb2.com/file/crain-media/crn-preview/internal/OUTPUTS/CRN/research-briefs/CRN-ISS-010-PS-Grief-Loss-Bereavement-Brief_2026-07-04_BRANDED.pdf" target="_blank" rel="noopener">PDF</a></td></tr>
+<tr><td class="cfh-code">CRN-ISS-011</td><td>When Death Comes: Dying, Notification, and Survivors</td><td><a href="https://docs.google.com/document/d/1ffkFEf_oc1sfSzVBvrqj-5bvzez4WjeerouYf6H71A0/edit" target="_blank" rel="noopener">GDoc</a></td><td><a href="https://f005.backblazeb2.com/file/crain-media/crn-preview/internal/OUTPUTS/CRN/research-briefs/CRN-ISS-011-PS-Death-and-Notification-Brief_2026-06-24_BRANDED.pdf" target="_blank" rel="noopener">PDF</a></td></tr>
+<tr><td class="cfh-code">CRN-ISS-013</td><td>When the Badge Comes Home Folded: The Surviving Spouse</td><td><a href="https://docs.google.com/document/d/1_9ezB3n7xB8KrWsjtX9mIBcjFWlHJBcZu_e9k7qI9FY/edit" target="_blank" rel="noopener">GDoc</a></td><td><a href="https://f005.backblazeb2.com/file/crain-media/crn-preview/internal/OUTPUTS/CRN/research-briefs/CRN-ISS-013-PS-Surviving-Spouse-Care-Brief_2026-06-24_BRANDED.pdf" target="_blank" rel="noopener">PDF</a></td></tr>
+<tr><td class="cfh-code">CRN-ISS-016</td><td>Complex and Traumatic Grief</td><td><a href="https://docs.google.com/document/d/1hns8dzfleSgJnlqlq3d-7sHE2IqhOIjpU_BfQy02GYs/edit" target="_blank" rel="noopener">GDoc</a></td><td><a href="https://f005.backblazeb2.com/file/crain-media/crn-preview/internal/OUTPUTS/CRN/research-briefs/CRN-ISS-016-PS-Complex-Traumatic-Grief-Brief_2026-06-24_BRANDED.pdf" target="_blank" rel="noopener">PDF</a></td></tr>
+<tr><td class="cfh-code">CRN-ISS-026</td><td>When the Officer Cannot Forgive Himself: Guilt and Self-Condemnation</td><td><a href="https://docs.google.com/document/d/1l998Fa--DYRfevFrJlMivOwZ9jFvhMw79KHvOaiMcCA/edit" target="_blank" rel="noopener">GDoc</a></td><td><a href="https://f005.backblazeb2.com/file/crain-media/crn-preview/internal/OUTPUTS/CRN/research-briefs/CRN-ISS-026-PS-Guilt-and-Self-Condemnation-Brief_2026-06-24_BRANDED.pdf" target="_blank" rel="noopener">PDF</a></td></tr>
+<tr><td class="cfh-code">CRN-ISS-040</td><td>When the Job Comes Home: Relationship Distress</td><td><a href="https://docs.google.com/document/d/1EwLo_j0JydF69oE8VG78cmGaaj1xKYaqIsyqKqhvY8s/edit" target="_blank" rel="noopener">GDoc</a></td><td><a href="https://f005.backblazeb2.com/file/crain-media/crn-preview/internal/OUTPUTS/CRN/research-briefs/CRN-ISS-040-PS-Relationship-Distress-Brief_2026-06-24_BRANDED.pdf" target="_blank" rel="noopener">PDF</a></td></tr>
+<tr><td class="cfh-code">CRN-ISS-043</td><td>When the Marriage Comes Apart: Separation and Divorce</td><td><a href="https://docs.google.com/document/d/1VeeNhsItpEkTSi2eEimwvKuuS7uZkGpvNOiA5xiju3M/edit" target="_blank" rel="noopener">GDoc</a></td><td><a href="https://f005.backblazeb2.com/file/crain-media/crn-preview/internal/OUTPUTS/CRN/research-briefs/CRN-ISS-043-PS-Separation-and-Divorce-Brief_2026-06-24_BRANDED.pdf" target="_blank" rel="noopener">PDF</a></td></tr>
+<tr><td class="cfh-code">CRN-ISS-071</td><td>Forgiveness After the Job</td><td><a href="https://docs.google.com/document/d/1JcIKkEU5sI7ShguBqHj7V8pvZdccZloZ9u5OpSxzUB8/edit" target="_blank" rel="noopener">GDoc</a></td><td><a href="https://f005.backblazeb2.com/file/crain-media/crn-preview/internal/OUTPUTS/CRN/research-briefs/CRN-ISS-071-PS-Forgiveness-and-Resentment-Brief_2026-06-24_BRANDED.pdf" target="_blank" rel="noopener">PDF</a></td></tr>
+<tr><td class="cfh-code">CRN-ISS-072</td><td>Spiritual Distress and Doubt: When Faith Is Shaken</td><td><a href="https://docs.google.com/document/d/15hRujaXrnHToGO2eQY_MwBItNbS7qVsa17fVBOm_XuM/edit" target="_blank" rel="noopener">GDoc</a></td><td><a href="https://f005.backblazeb2.com/file/crain-media/crn-preview/internal/OUTPUTS/CRN/research-briefs/CRN-ISS-072-PS-Spiritual-Distress-and-Doubt-Brief_2026-06-24_BRANDED.pdf" target="_blank" rel="noopener">PDF</a></td></tr>
+<tr><td class="cfh-code">CRN-ISS-101</td><td>Anger Management for Public-Safety Personnel</td><td><a href="https://docs.google.com/document/d/1c2eyoqSawnneqyh1JtLNmMxEQEVFtykf1cB7FXuMaM4/edit" target="_blank" rel="noopener">GDoc</a></td><td><a href="https://f005.backblazeb2.com/file/crain-media/crn-preview/internal/OUTPUTS/CRN/research-briefs/CRN-ISS-101-PS-Anger-Management-Brief_2026-06-24_BRANDED.pdf" target="_blank" rel="noopener">PDF</a></td></tr>
+<tr><td class="cfh-code">CRN-ISS-107</td><td>When the Lights Go Out: Depression</td><td><a href="https://docs.google.com/document/d/1vdk8zBLJTc7WHQ9P5llnfON4KIT-dVcvlFnVK6dHvXQ/edit" target="_blank" rel="noopener">GDoc</a></td><td><a href="https://f005.backblazeb2.com/file/crain-media/crn-preview/internal/OUTPUTS/CRN/research-briefs/CRN-ISS-107-PS-Depression-Brief_2026-06-24_BRANDED.pdf" target="_blank" rel="noopener">PDF</a></td></tr>
+<tr><td class="cfh-code">CRN-ISS-109</td><td>When the Coping Turns: Substance Use and Addiction</td><td><a href="https://docs.google.com/document/d/12OTObSx4bvq96mzCXnSOzAZk4-UqnT1IsTcBFW3nplQ/edit" target="_blank" rel="noopener">GDoc</a></td><td><a href="https://f005.backblazeb2.com/file/crain-media/crn-preview/internal/OUTPUTS/CRN/research-briefs/CRN-ISS-109-PS-Substance-Use-and-Addiction-Brief_2026-06-24_BRANDED.pdf" target="_blank" rel="noopener">PDF</a></td></tr>
+<tr><td class="cfh-code">CRN-ISS-121</td><td>After a Sexual Assault: Trauma-Informed Spiritual Care</td><td><a href="https://docs.google.com/document/d/1C38VFEQ5WoFA9TCBIfPYv_RCvpDQHId9UfT0NjH5mpw/edit" target="_blank" rel="noopener">GDoc</a></td><td><a href="https://f005.backblazeb2.com/file/crain-media/crn-preview/internal/OUTPUTS/CRN/research-briefs/CRN-ISS-121-PS-Sexual-Assault-Recovery-Brief_2026-06-24_BRANDED.pdf" target="_blank" rel="noopener">PDF</a></td></tr>
+<tr><td class="cfh-code">CRN-ISS-123</td><td>Domestic and Intimate-Partner Abuse in the PS Family</td><td><a href="https://docs.google.com/document/d/1bDEI61qIX5cTnH92y5ia5e6jE4LEVbf_HtgZdwqn1Qc/edit" target="_blank" rel="noopener">GDoc</a></td><td><a href="https://f005.backblazeb2.com/file/crain-media/crn-preview/internal/OUTPUTS/CRN/research-briefs/CRN-ISS-123-PS-Domestic-and-IPV-Brief_2026-06-24_BRANDED.pdf" target="_blank" rel="noopener">PDF</a></td></tr>
+<tr><td class="cfh-code">CRN-ISS-124</td><td>When the Job Makes You the Victim: Victimization and Trauma Recovery</td><td><a href="https://docs.google.com/document/d/1P8wK4bCMd9-5HNkHFHhNy6FluhlG-NR_-304rkfY3HQ/edit" target="_blank" rel="noopener">GDoc</a></td><td><a href="https://f005.backblazeb2.com/file/crain-media/crn-preview/internal/OUTPUTS/CRN/research-briefs/CRN-ISS-124-PS-Victimization-Trauma-Recovery-Brief_2026-06-24_BRANDED.pdf" target="_blank" rel="noopener">PDF</a></td></tr>
+<tr><td class="cfh-code">CRN-ISS-246</td><td>Meaning and Theodicy After a Bad Call</td><td><a href="https://docs.google.com/document/d/1NE_v0f-qK2BabQOATuDjP2e_zWsTOrRIeiEb91dxgNI/edit" target="_blank" rel="noopener">GDoc</a></td><td><a href="https://f005.backblazeb2.com/file/crain-media/crn-preview/internal/OUTPUTS/CRN/research-briefs/CRN-ISS-246-PS-Theodicy-Bad-Call-Brief_2026-06-24_BRANDED.pdf" target="_blank" rel="noopener">PDF</a></td></tr>
+<tr><td class="cfh-code">CRN-ISS-277</td><td>Line of Duty Death: Chaplain Response</td><td><a href="https://docs.google.com/document/d/1bwQJKqxjSO0-ORdgfyXI77mj76uaOHxZWlHQ9OZ6daU/edit" target="_blank" rel="noopener">GDoc</a></td><td><a href="https://f005.backblazeb2.com/file/crain-media/crn-preview/internal/OUTPUTS/CRN/research-briefs/CRN-ISS-277-PS-Line-of-Duty-Death-Brief_2026-07-05_BRANDED.pdf" target="_blank" rel="noopener">PDF</a></td></tr>
+    </table>
+  </div>
+
+  <div class="cfh-sec">
+    <h2>LightBearer™</h2>
+    <p class="cfh-lead">The live, working search tool. Type what you saw or heard (e.g. "suicide" or "moral injury"), get predictions across the CRN issue catalog, and open a built guide - recognize the concern, respond in scope, refer safely. Runs in your browser, no login.</p>
+    <a class="cfh-cta" href="https://f005.backblazeb2.com/file/crain-media/crn-field-guide/index.html" target="_blank" rel="noopener">Open the live search tool</a>
+  </div>
+
+  <div class="cfh-sec">
+    <h2>Case Media</h2>
+    <p class="cfh-lead">The Public Safety Chaplaincy case experience &mdash; a dramatized encounter showing CRN's chaplaincy model in the field.</p>
+    <a class="cfh-cta alt" href="https://www.chaplainresourcenetwork.com/membership-plans" target="_blank" rel="noopener">Watch the PS Case Experience</a>
+  </div>
+
+  <div class="cfh-sec">
+    <h2>Membership &amp; CTA</h2>
+    <p class="cfh-lead">Meet a CRN team member at ICPC, then join at the level that fits &mdash; from a single field-guide entry to full membership.</p>
+    <a class="cfh-cta" href="https://www.chaplainresourcenetwork.com/membership-plans" target="_blank" rel="noopener">Start at $19.99 &mdash; Field JIT</a>
+    <a class="cfh-cta alt" href="https://www.chaplainresourcenetwork.com/membership-plans" target="_blank" rel="noopener">See all Membership Plans</a>
+    <div class="cfh-plans">
+      <a href="https://www.chaplainresourcenetwork.com/membership-plans" target="_blank" rel="noopener">Bronze</a>
+      <a href="https://www.chaplainresourcenetwork.com/membership-plans" target="_blank" rel="noopener">Silver</a>
+      <a href="https://www.chaplainresourcenetwork.com/membership-plans" target="_blank" rel="noopener">Gold</a>
+      <a href="https://www.chaplainresourcenetwork.com/membership-plans" target="_blank" rel="noopener">Platinum</a>
+      <a href="https://www.chaplainresourcenetwork.com/membership-plans" target="_blank" rel="noopener">Build Your Own Plan</a>
+    </div>
+  </div>
+</div>
+
+<!-- ================= COMING SOON PANELS ================= -->
+<div class="cfh-panel cfh-hide" data-area="healthcare">
+  <div class="cfh-sec cfh-soon"><span class="cfh-badge">Coming soon</span>
+    <h3>Healthcare resources</h3>
+    <p>The Healthcare Conference Hub is not built yet. When Healthcare is the featured area for a future conference, its lessons, briefs, field guide entries, and case media will populate this panel the same way Public Safety does today.</p>
+  </div>
+</div>
+<div class="cfh-panel cfh-hide" data-area="military">
+  <div class="cfh-sec cfh-soon"><span class="cfh-badge">Coming soon</span>
+    <h3>Military resources</h3>
+    <p>The Military Conference Hub is not built yet. Its full resource set will populate here when Military is featured for a future conference.</p>
+  </div>
+</div>
+<div class="cfh-panel cfh-hide" data-area="corrections">
+  <div class="cfh-sec cfh-soon"><span class="cfh-badge">Coming soon</span>
+    <h3>Corrections resources</h3>
+    <p>The Corrections Conference Hub is not built yet. Its full resource set will populate here when Corrections is featured for a future conference.</p>
+  </div>
+</div>
+<div class="cfh-panel cfh-hide" data-area="fire-ems">
+  <div class="cfh-sec cfh-soon"><span class="cfh-badge">Coming soon</span>
+    <h3>Fire / EMS resources</h3>
+    <p>The Fire/EMS Conference Hub is not built yet. Its full resource set will populate here when Fire/EMS is featured for a future conference.</p>
+  </div>
+</div>
+<div class="cfh-panel cfh-hide" data-area="behavioral-health">
+  <div class="cfh-sec cfh-soon"><span class="cfh-badge">Coming soon</span>
+    <h3>Behavioral Health resources</h3>
+    <p>The Behavioral Health Conference Hub is not built yet. Its full resource set will populate here when Behavioral Health is featured for a future conference.</p>
+  </div>
+</div>
+<div class="cfh-panel cfh-hide" data-area="community">
+  <div class="cfh-sec cfh-soon"><span class="cfh-badge">Coming soon</span>
+    <h3>Community resources</h3>
+    <p>The Community Conference Hub is not built yet. Its full resource set will populate here when Community is featured for a future conference.</p>
+  </div>
+</div>
+<div class="cfh-panel cfh-hide" data-area="disaster-response">
+  <div class="cfh-sec cfh-soon"><span class="cfh-badge">Coming soon</span>
+    <h3>Disaster Response resources</h3>
+    <p>The Disaster Response Conference Hub is not built yet. Its full resource set will populate here when Disaster Response is featured for a future conference.</p>
+  </div>
+</div>
+<div class="cfh-panel cfh-hide" data-area="education">
+  <div class="cfh-sec cfh-soon"><span class="cfh-badge">Coming soon</span>
+    <h3>Education resources</h3>
+    <p>The Education Conference Hub is not built yet. Its full resource set will populate here when Education is featured for a future conference.</p>
+  </div>
+</div>
+<div class="cfh-panel cfh-hide" data-area="corporate-marketplace">
+  <div class="cfh-sec cfh-soon"><span class="cfh-badge">Coming soon</span>
+    <h3>Corporate / Marketplace resources</h3>
+    <p>The Corporate/Marketplace Conference Hub is not built yet. Its full resource set will populate here when Corporate/Marketplace is featured for a future conference.</p>
+  </div>
+</div>
+<div class="cfh-panel cfh-hide" data-area="church">
+  <div class="cfh-sec cfh-soon"><span class="cfh-badge">Coming soon</span>
+    <h3>Church resources</h3>
+    <p>The Church Conference Hub is not built yet. Its full resource set will populate here when Church is featured for a future conference.</p>
+  </div>
+</div>
+
+<div class="cfh-footer">
+  This hub template highlights one CRN functional area per conference. Public Safety is featured for ICPC 2026 (Spokane, Jul 19&ndash;25). Other functional areas can be featured the same way for future conferences.<br>
+  (c) 2026 Marsh Institute for Chaplains. Chaplain Resource Network is an initiative of the Marsh Institute for Chaplains. All rights reserved.
+</div>
+
+</div>
+<script>
+(function(){
+  var root = document.getElementById('crn-cfh-root');
+  if(!root) return;
+  var sel = root.querySelector('#cfhSelect');
+  var panels = root.querySelectorAll('.cfh-panel');
+  function show(area){
+    for(var i=0;i<panels.length;i++){
+      var p = panels[i];
+      if(p.getAttribute('data-area') === area){ p.classList.remove('cfh-hide'); }
+      else { p.classList.add('cfh-hide'); }
+    }
+  }
+  sel.addEventListener('change', function(){ show(sel.value); });
+  show(sel.value);
+})();
+</script>

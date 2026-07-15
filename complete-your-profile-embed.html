@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Complete Your Profile - Chaplain Resource Network</title>
+<style>
+  :root {
+    --ink:#1f2a37; --muted:#5b6875; --line:#e2e6ea; --bg:#f6f4ef;
+    --card:#ffffff; --brand:#0b3a53; --accent:#c8873b; --err:#b4402f; --ok:#2e7d52;
+  }
+  * { box-sizing:border-box; }
+  body { margin:0; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,
+    Helvetica,Arial,sans-serif; color:var(--ink); background:var(--bg);
+    line-height:1.5; }
+  .wrap { max-width:760px; margin:0 auto; padding:8px 20px 40px; }
+  header.brand { text-align:center; padding:12px 0 20px; }
+  header.brand img { height:96px; width:auto; }
+  header.brand h1 { font-size:1.6rem; margin:14px 0 4px; color:var(--brand);
+    letter-spacing:.2px; }
+  header.brand p { margin:0; color:var(--muted); font-size:.98rem; }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:14px;
+    padding:26px 24px; box-shadow:0 1px 2px rgba(16,24,40,.04); }
+  fieldset { border:0; padding:0; margin:0 0 22px; }
+  legend { font-weight:700; font-size:1.05rem; color:var(--brand);
+    padding-bottom:6px; margin-bottom:12px; border-bottom:2px solid var(--accent);
+    width:100%; }
+  .field { margin-bottom:16px; }
+  .field > label.q { display:block; font-weight:600; margin-bottom:6px; }
+  .req { color:var(--err); }
+  .hint { color:var(--muted); font-size:.86rem; margin:2px 0 6px; }
+  input[type=text], input[type=email], input[type=tel], select {
+    width:100%; padding:10px 12px; border:1px solid var(--line); border-radius:9px;
+    font-size:1rem; background:#fff; color:var(--ink); }
+  input:focus, select:focus { outline:2px solid var(--accent); outline-offset:1px;
+    border-color:var(--accent); }
+  .row2 { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  @media (max-width:560px) { .row2 { grid-template-columns:1fr; } }
+  .radio-group, .check-group { display:flex; flex-direction:column; gap:6px; }
+  .check-group { display:grid; grid-template-columns:1fr 1fr; gap:6px 18px; }
+  @media (max-width:560px) { .check-group { grid-template-columns:1fr; } }
+  label.opt { display:flex; align-items:flex-start; gap:9px; font-weight:400;
+    padding:5px 0; cursor:pointer; }
+  label.opt input { margin-top:3px; }
+  .consent { background:#f2f6f5; border:1px solid var(--line); border-radius:9px;
+    padding:12px 14px; }
+  .err-msg { color:var(--err); font-size:.85rem; margin-top:5px; display:none; }
+  .field.invalid .err-msg { display:block; }
+  .field.invalid input, .field.invalid select { border-color:var(--err); }
+  .submit { background:var(--brand); color:#fff; border:0; border-radius:10px;
+    padding:14px 22px; font-size:1.05rem; font-weight:700; cursor:pointer;
+    width:100%; margin-top:8px; }
+  .submit:hover { background:#0d4a69; }
+  .submit:disabled { opacity:.6; cursor:not-allowed; }
+  .form-status { text-align:center; margin-top:14px; font-weight:600; min-height:22px; }
+  .form-status.error { color:var(--err); }
+  .thankyou { display:none; text-align:center; padding:38px 20px; }
+  .thankyou h2 { color:var(--ok); margin:0 0 10px; }
+  .thankyou .lamp { height:72px; margin-bottom:10px; }
+  footer.copyright { text-align:center; color:var(--muted); font-size:.82rem;
+    margin-top:26px; line-height:1.6; }
+  .cf-conditional { display:none; margin-top:12px; }
+  .cf-conditional.show { display:block; }
+  .offer-cta { display:inline-block; background:var(--accent); color:#fff;
+    text-decoration:none; padding:14px 26px; border-radius:10px; font-weight:700;
+    margin-top:18px; }
+  .offer-cta:hover { background:#b6772f; }
+  .honored-badge { color:var(--ok); }
+  .thankyou a.mail { color:var(--brand); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="card" id="cardForm">
+    <form id="profileForm" novalidate>
+
+      <fieldset>
+        <legend>Who You Are</legend>
+        <div class="row2">
+          <div class="field"><label class="q" for="first_name">First name <span class="req">*</span></label>
+            <input type="text" id="first_name" name="first_name" required>
+            <div class="err-msg">Required.</div></div>
+          <div class="field"><label class="q" for="last_name">Last name <span class="req">*</span></label>
+            <input type="text" id="last_name" name="last_name" required>
+            <div class="err-msg">Required.</div></div>
+        </div>
+        <div class="field"><label class="q" for="email">Email <span class="req">*</span></label>
+          <input type="email" id="email" name="email" required>
+          <div class="err-msg">Enter a valid email.</div></div>
+        <div class="field"><label class="q" for="role_title">Role / title <span class="req">*</span></label>
+          <input type="text" id="role_title" name="role_title" required>
+          <div class="err-msg">Required.</div></div>
+        <div class="field"><label class="q" for="phone">Phone number <span class="req">*</span></label>
+          <input type="tel" id="phone" name="phone" required>
+          <div class="err-msg">Required.</div></div>
+        <div class="field"><label class="q" for="organization">Organization name (optional)</label>
+          <input type="text" id="organization" name="organization"></div>
+      </fieldset>
+
+      <fieldset>
+        <legend>CAREforce Membership</legend>
+        <div class="field"><label class="q">Are you a current dues-paying CAREforce member? <span class="req">*</span></label>
+        <div class="radio-group" data-required data-name="cf_member">
+            <label class="opt"><input type="radio" name="cf_member" id="cf_member_yes" value="Yes" required> <span>Yes</span></label>
+            <label class="opt"><input type="radio" name="cf_member" id="cf_member_no" value="No"> <span>No</span></label>
+        </div>
+          <div class="err-msg">Select one.</div></div>
+        <div class="field cf-conditional" id="cfEmailWrap">
+          <label class="q" for="cf_email">CAREforce membership email</label>
+          <div class="hint">Enter the email on your CAREforce membership so we can honor it. We check it against active memberships only and never display the member list.</div>
+          <input type="email" id="cf_email" name="cf_email" autocomplete="email">
+          <div class="err-msg">Enter a valid email.</div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Where You Are</legend>
+        <div class="row2">
+          <div class="field"><label class="q" for="city">City of residence <span class="req">*</span></label>
+            <input type="text" id="city" name="city" required>
+            <div class="err-msg">Required.</div></div>
+          <div class="field"><label class="q" for="state_region">State or region <span class="req">*</span></label>
+            <input type="text" id="state_region" name="state_region" required>
+            <div class="err-msg">Required.</div></div>
+        </div>
+        <div class="field"><label class="q" for="country">Country of residence <span class="req">*</span></label>
+          <select id="country" name="country" required>
+            <option value="" disabled selected>Select a country</option>
+            <option value="United States">United States</option>
+            <option value="Canada">Canada</option>
+            <option value="United Kingdom">United Kingdom</option>
+            <option value="Australia">Australia</option>
+            <option value="Germany">Germany</option>
+            <option value="Afghanistan">Afghanistan</option>
+            <option value="Albania">Albania</option>
+            <option value="Algeria">Algeria</option>
+            <option value="Argentina">Argentina</option>
+            <option value="Armenia">Armenia</option>
+            <option value="Austria">Austria</option>
+            <option value="Bangladesh">Bangladesh</option>
+            <option value="Belgium">Belgium</option>
+            <option value="Bolivia">Bolivia</option>
+            <option value="Brazil">Brazil</option>
+            <option value="Bulgaria">Bulgaria</option>
+            <option value="Cambodia">Cambodia</option>
+            <option value="Cameroon">Cameroon</option>
+            <option value="Chile">Chile</option>
+            <option value="China">China</option>
+            <option value="Colombia">Colombia</option>
+            <option value="Costa Rica">Costa Rica</option>
+            <option value="Croatia">Croatia</option>
+            <option value="Cuba">Cuba</option>
+            <option value="Czechia">Czechia</option>
+            <option value="Denmark">Denmark</option>
+            <option value="Dominican Republic">Dominican Republic</option>
+            <option value="Ecuador">Ecuador</option>
+            <option value="Egypt">Egypt</option>
+            <option value="El Salvador">El Salvador</option>
+            <option value="Ethiopia">Ethiopia</option>
+            <option value="Fiji">Fiji</option>
+            <option value="Finland">Finland</option>
+            <option value="France">France</option>
+            <option value="Georgia">Georgia</option>
+            <option value="Ghana">Ghana</option>
+            <option value="Greece">Greece</option>
+            <option value="Guatemala">Guatemala</option>
+            <option value="Haiti">Haiti</option>
+            <option value="Honduras">Honduras</option>
+            <option value="Hong Kong">Hong Kong</option>
+            <option value="Hungary">Hungary</option>
+            <option value="Iceland">Iceland</option>
+            <option value="India">India</option>
+            <option value="Indonesia">Indonesia</option>
+            <option value="Iran">Iran</option>
+            <option value="Iraq">Iraq</option>
+            <option value="Ireland">Ireland</option>
+            <option value="Israel">Israel</option>
+            <option value="Italy">Italy</option>
+            <option value="Jamaica">Jamaica</option>
+            <option value="Japan">Japan</option>
+            <option value="Jordan">Jordan</option>
+            <option value="Kazakhstan">Kazakhstan</option>
+            <option value="Kenya">Kenya</option>
+            <option value="Kuwait">Kuwait</option>
+            <option value="Latvia">Latvia</option>
+            <option value="Lebanon">Lebanon</option>
+            <option value="Liberia">Liberia</option>
+            <option value="Lithuania">Lithuania</option>
+            <option value="Luxembourg">Luxembourg</option>
+            <option value="Malaysia">Malaysia</option>
+            <option value="Mexico">Mexico</option>
+            <option value="Moldova">Moldova</option>
+            <option value="Mongolia">Mongolia</option>
+            <option value="Morocco">Morocco</option>
+            <option value="Myanmar">Myanmar</option>
+            <option value="Nepal">Nepal</option>
+            <option value="Netherlands">Netherlands</option>
+            <option value="New Zealand">New Zealand</option>
+            <option value="Nicaragua">Nicaragua</option>
+            <option value="Nigeria">Nigeria</option>
+            <option value="North Korea">North Korea</option>
+            <option value="Norway">Norway</option>
+            <option value="Oman">Oman</option>
+            <option value="Pakistan">Pakistan</option>
+            <option value="Panama">Panama</option>
+            <option value="Papua New Guinea">Papua New Guinea</option>
+            <option value="Paraguay">Paraguay</option>
+            <option value="Peru">Peru</option>
+            <option value="Philippines">Philippines</option>
+            <option value="Poland">Poland</option>
+            <option value="Portugal">Portugal</option>
+            <option value="Qatar">Qatar</option>
+            <option value="Romania">Romania</option>
+            <option value="Russian Federation">Russian Federation</option>
+            <option value="Rwanda">Rwanda</option>
+            <option value="Saudi Arabia">Saudi Arabia</option>
+            <option value="Senegal">Senegal</option>
+            <option value="Serbia">Serbia</option>
+            <option value="Singapore">Singapore</option>
+            <option value="Slovakia">Slovakia</option>
+            <option value="Slovenia">Slovenia</option>
+            <option value="Somalia">Somalia</option>
+            <option value="South Africa">South Africa</option>
+            <option value="South Korea">South Korea</option>
+            <option value="South Sudan">South Sudan</option>
+            <option value="Spain">Spain</option>
+            <option value="Sri Lanka">Sri Lanka</option>
+            <option value="Sudan">Sudan</option>
+            <option value="Sweden">Sweden</option>
+            <option value="Switzerland">Switzerland</option>
+            <option value="Syrian Arab Republic">Syrian Arab Republic</option>
+            <option value="Taiwan">Taiwan</option>
+            <option value="Tanzania">Tanzania</option>
+            <option value="Thailand">Thailand</option>
+            <option value="Trinidad and Tobago">Trinidad and Tobago</option>
+            <option value="Tunisia">Tunisia</option>
+            <option value="Turkmenistan">Turkmenistan</option>
+            <option value="Uganda">Uganda</option>
+            <option value="Ukraine">Ukraine</option>
+            <option value="United Arab Emirates">United Arab Emirates</option>
+            <option value="Uruguay">Uruguay</option>
+            <option value="Uzbekistan">Uzbekistan</option>
+            <option value="Venezuela">Venezuela</option>
+            <option value="Vietnam">Vietnam</option>
+            <option value="Yemen">Yemen</option>
+            <option value="Zambia">Zambia</option>
+            <option value="Zimbabwe">Zimbabwe</option>
+            <option value="Other">Other</option>
+          </select>
+          <div class="err-msg">Required.</div></div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Your Formation</legend>
+        <div class="field"><label class="q">Formation level <span class="req">*</span></label>
+        <div class="radio-group" data-required data-name="formation_level">
+            <label class="opt"><input type="radio" name="formation_level" id="formation_level_0" value="Lay" required> <span>Lay</span></label>
+            <label class="opt"><input type="radio" name="formation_level" id="formation_level_1" value="Certificate"> <span>Certificate</span></label>
+            <label class="opt"><input type="radio" name="formation_level" id="formation_level_2" value="Undergraduate"> <span>Undergraduate</span></label>
+            <label class="opt"><input type="radio" name="formation_level" id="formation_level_3" value="Graduate"> <span>Graduate</span></label>
+            <label class="opt"><input type="radio" name="formation_level" id="formation_level_4" value="Doctoral"> <span>Doctoral</span></label>
+        </div>
+          <div class="err-msg">Select one.</div></div>
+        <div class="field"><label class="q" for="cpe_status">CPE status <span class="req">*</span></label>
+          <select id="cpe_status" name="cpe_status" required>
+            <option value="" disabled selected>Select one</option>
+            <option value="Not pursuing">Not pursuing</option>
+            <option value="Exploring">Exploring</option>
+            <option value="Application submitted">Application submitted</option>
+            <option value="Accepted">Accepted</option>
+            <option value="Enrolled">Enrolled</option>
+            <option value="Completed">Completed</option>
+            <option value="Residency">Residency</option>
+            <option value="Supervisory CEC">Supervisory CEC</option>
+          </select>
+          <div class="err-msg">Required.</div></div>
+        <div class="field"><label class="q" for="cpe_unit">CPE unit <span class="req">*</span></label>
+          <div class="hint">Select NA if not applicable.</div>
+          <select id="cpe_unit" name="cpe_unit" required>
+            <option value="" disabled selected>Select one</option>
+            <option value="CPE 100">CPE 100</option>
+            <option value="CPE 200">CPE 200</option>
+            <option value="CPE 300">CPE 300</option>
+            <option value="CPE 400">CPE 400</option>
+            <option value="CPE 600">CPE 600</option>
+            <option value="CPE 700">CPE 700</option>
+            <option value="CPE 800">CPE 800</option>
+            <option value="CPE 900">CPE 900</option>
+            <option value="NA">NA</option>
+          </select>
+          <div class="err-msg">Required.</div></div>
+        <div class="field"><label class="q">Role status <span class="req">*</span></label>
+        <div class="radio-group" data-required data-name="role_status">
+            <label class="opt"><input type="radio" name="role_status" id="role_status_0" value="Volunteer" required> <span>Volunteer</span></label>
+            <label class="opt"><input type="radio" name="role_status" id="role_status_1" value="In training"> <span>In training</span></label>
+            <label class="opt"><input type="radio" name="role_status" id="role_status_2" value="Endorsed / credentialed chaplain"> <span>Endorsed / credentialed chaplain</span></label>
+            <label class="opt"><input type="radio" name="role_status" id="role_status_3" value="Supervisor / educator"> <span>Supervisor / educator</span></label>
+            <label class="opt"><input type="radio" name="role_status" id="role_status_4" value="Clergy"> <span>Clergy</span></label>
+            <label class="opt"><input type="radio" name="role_status" id="role_status_5" value="Lay caregiver"> <span>Lay caregiver</span></label>
+        </div>
+          <div class="err-msg">Select one.</div></div>
+        <div class="field"><label class="q">Primary goal <span class="req">*</span></label>
+        <div class="radio-group" data-required data-name="primary_goal">
+            <label class="opt"><input type="radio" name="primary_goal" id="primary_goal_0" value="CEU credit" required> <span>CEU credit</span></label>
+            <label class="opt"><input type="radio" name="primary_goal" id="primary_goal_1" value="Credential / endorsement"> <span>Credential / endorsement</span></label>
+            <label class="opt"><input type="radio" name="primary_goal" id="primary_goal_2" value="Skill building"> <span>Skill building</span></label>
+            <label class="opt"><input type="radio" name="primary_goal" id="primary_goal_3" value="Personal growth"> <span>Personal growth</span></label>
+            <label class="opt"><input type="radio" name="primary_goal" id="primary_goal_4" value="Employer required"> <span>Employer required</span></label>
+        </div>
+          <div class="err-msg">Select one.</div></div>
+        <div class="field"><label class="q">Faith tradition <span class="req">*</span></label>
+        <div class="radio-group" data-required data-name="faith_tradition">
+            <label class="opt"><input type="radio" name="faith_tradition" id="faith_tradition_0" value="Catholic" required> <span>Catholic</span></label>
+            <label class="opt"><input type="radio" name="faith_tradition" id="faith_tradition_1" value="Christian"> <span>Christian</span></label>
+            <label class="opt"><input type="radio" name="faith_tradition" id="faith_tradition_2" value="Jewish"> <span>Jewish</span></label>
+            <label class="opt"><input type="radio" name="faith_tradition" id="faith_tradition_3" value="Muslim"> <span>Muslim</span></label>
+            <label class="opt"><input type="radio" name="faith_tradition" id="faith_tradition_4" value="Buddhist"> <span>Buddhist</span></label>
+            <label class="opt"><input type="radio" name="faith_tradition" id="faith_tradition_5" value="Hindu"> <span>Hindu</span></label>
+            <label class="opt"><input type="radio" name="faith_tradition" id="faith_tradition_6" value="Sikh"> <span>Sikh</span></label>
+            <label class="opt"><input type="radio" name="faith_tradition" id="faith_tradition_7" value="Latter-day Saint"> <span>Latter-day Saint</span></label>
+            <label class="opt"><input type="radio" name="faith_tradition" id="faith_tradition_8" value="Baha'i"> <span>Baha'i</span></label>
+            <label class="opt"><input type="radio" name="faith_tradition" id="faith_tradition_9" value="Unaffiliated"> <span>Unaffiliated</span></label>
+            <label class="opt"><input type="radio" name="faith_tradition" id="faith_tradition_10" value="Other"> <span>Other</span></label>
+            <label class="opt"><input type="radio" name="faith_tradition" id="faith_tradition_11" value="Prefer not to say"> <span>Prefer not to say</span></label>
+        </div>
+          <div class="err-msg">Select one.</div></div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Functional Area</legend>
+        <div class="field"><label class="q">Select all that apply</label>
+        <div class="check-group">
+            <label class="opt"><input type="checkbox" name="functional_areas" value="Public Safety"> <span>Public Safety</span></label>
+            <label class="opt"><input type="checkbox" name="functional_areas" value="Healthcare"> <span>Healthcare</span></label>
+            <label class="opt"><input type="checkbox" name="functional_areas" value="Military"> <span>Military</span></label>
+            <label class="opt"><input type="checkbox" name="functional_areas" value="Corrections"> <span>Corrections</span></label>
+            <label class="opt"><input type="checkbox" name="functional_areas" value="Disaster Relief"> <span>Disaster Relief</span></label>
+            <label class="opt"><input type="checkbox" name="functional_areas" value="Corporate"> <span>Corporate</span></label>
+            <label class="opt"><input type="checkbox" name="functional_areas" value="Education"> <span>Education</span></label>
+            <label class="opt"><input type="checkbox" name="functional_areas" value="Community"> <span>Community</span></label>
+            <label class="opt"><input type="checkbox" name="functional_areas" value="Airport &amp; Transport"> <span>Airport &amp; Transport</span></label>
+            <label class="opt"><input type="checkbox" name="functional_areas" value="Sports &amp; Recreation"> <span>Sports &amp; Recreation</span></label>
+            <label class="opt"><input type="checkbox" name="functional_areas" value="Other"> <span>Other</span></label>
+        </div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Federation & Referral</legend>
+        <div class="field"><label class="q">Which CRN federation organization are you connected to? <span class="req">*</span></label>
+        <div class="radio-group" data-required data-name="federation_org">
+            <label class="opt"><input type="radio" name="federation_org" id="federation_org_0" value="CPEI" required> <span>CPEI</span></label>
+            <label class="opt"><input type="radio" name="federation_org" id="federation_org_1" value="CCN"> <span>CCN</span></label>
+            <label class="opt"><input type="radio" name="federation_org" id="federation_org_2" value="HTF"> <span>HTF</span></label>
+            <label class="opt"><input type="radio" name="federation_org" id="federation_org_3" value="MIC"> <span>MIC</span></label>
+            <label class="opt"><input type="radio" name="federation_org" id="federation_org_4" value="CAREForce"> <span>CAREForce</span></label>
+        </div>
+          <div class="err-msg">Select one.</div></div>
+        <div class="field"><label class="q">If CAREForce - your status (optional)</label>
+        <div class="radio-group" data-name="careforce_status">
+            <label class="opt"><input type="radio" name="careforce_status" id="careforce_status_0" value="Current dues-paying member"> <span>Current dues-paying member</span></label>
+            <label class="opt"><input type="radio" name="careforce_status" id="careforce_status_1" value="Former member"> <span>Former member</span></label>
+            <label class="opt"><input type="radio" name="careforce_status" id="careforce_status_2" value="Course or event attendee"> <span>Course or event attendee</span></label>
+            <label class="opt"><input type="radio" name="careforce_status" id="careforce_status_3" value="New"> <span>New</span></label>
+        </div>
+        </div>
+        <div class="field"><label class="q">How did you hear about CRN? <span class="req">*</span></label>
+        <div class="radio-group" data-required data-name="heard_about">
+            <label class="opt"><input type="radio" name="heard_about" id="heard_about_0" value="CPEI" required> <span>CPEI</span></label>
+            <label class="opt"><input type="radio" name="heard_about" id="heard_about_1" value="CCN"> <span>CCN</span></label>
+            <label class="opt"><input type="radio" name="heard_about" id="heard_about_2" value="HTF"> <span>HTF</span></label>
+            <label class="opt"><input type="radio" name="heard_about" id="heard_about_3" value="MIC"> <span>MIC</span></label>
+            <label class="opt"><input type="radio" name="heard_about" id="heard_about_4" value="CAREForce"> <span>CAREForce</span></label>
+        </div>
+          <div class="err-msg">Select one.</div></div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Consent</legend>
+        <div class="field consent">
+          <label class="opt"><input type="checkbox" id="email_consent" name="email_consent" required>
+          <span>Yes - CRN (Chaplain Resource Network, a Marsh Institute for Chaplains program)
+          may email me training, resources, and updates. I can unsubscribe anytime.
+          <span class="req">*</span></span></label>
+          <div class="err-msg">Please confirm to continue.</div>
+        </div>
+      </fieldset>
+
+      <button type="submit" class="submit" id="submitBtn">Complete My Profile</button>
+      <div class="form-status" id="formStatus"></div>
+    </form>
+  </div>
+
+  <div class="thankyou card" id="thankyou">
+    <img class="lamp" src="https://cdn.jsdelivr.net/gh/Chaplain-Resource-Network/crn-embeds@main/assets/crn-lamp-transparent.png" alt="">
+    <h2>Thank you - your profile is complete.</h2>
+    <p>Welcome to the Chaplain Resource Network. We will be in touch with resources
+    tailored to your calling.</p>
+  </div>
+
+  <footer class="copyright">
+    &copy; 2026 Marsh Institute for Chaplains. Chaplain Resource Network is an
+    initiative of the Marsh Institute for Chaplains. All rights reserved.
+  </footer>
+</div>
+
+<script>
+  // Publishable ANON key only. Insert-only via RLS; this key cannot read others' data.
+  const SUPABASE_URL = 'https://jkrzwacmslqazwwsqsar.supabase.co';
+  const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imprcnp3YWNtc2xxYXp3d3Nxc2FyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzkxOTExNzcsImV4cCI6MjA5NDc2NzE3N30.iPbXTLKx3CDCNXXgli_rbs1StEaznVSWt8tnqSq2Pm0';
+  const ENDPOINT = SUPABASE_URL + "/rest/v1/crn_profiles";
+  const ONBOARDING_ENDPOINT = SUPABASE_URL + "/rest/v1/onboarding_profiles";
+  const VERIFY_ENDPOINT = SUPABASE_URL + "/functions/v1/verify-cf-member";
+  const LEGACY_OFFER_URL = "https://ken-schlenker-f253.mykajabi.com/offers/RevLeAjV/checkout";
+  const FOUNDING_OFFER_URL = "https://ken-schlenker-f253.mykajabi.com/offers/t6rwFGNt/checkout";
+
+  const form = document.getElementById("profileForm");
+  const statusEl = document.getElementById("formStatus");
+  const btn = document.getElementById("submitBtn");
+
+  // CAREforce Yes/No toggles the verification email field
+  const cfWrap = document.getElementById("cfEmailWrap");
+  form.querySelectorAll('input[name="cf_member"]').forEach(function (r) {
+    r.addEventListener("change", function () {
+      const yes = radioVal("cf_member") === "Yes";
+      cfWrap.classList.toggle("show", yes);
+      const cfe = document.getElementById("cf_email");
+      if (yes && cfe && !cfe.value) { cfe.value = form.elements["email"].value.trim(); }
+    });
+  });
+
+  function showResult(isCF, verified) {
+    const card = document.getElementById("cardForm");
+    const ty = document.getElementById("thankyou");
+    const lamp = '<img class="lamp" src="https://cdn.jsdelivr.net/gh/Chaplain-Resource-Network/crn-embeds@main/assets/crn-lamp-transparent.png" alt="">';
+    if (isCF && verified) {
+      ty.innerHTML = lamp +
+        '<h2 class="honored-badge">Your CAREforce membership is honored.</h2>' +
+        '<p>Welcome home. As a founding legacy member you migrate free, then continue at ' +
+        '<strong>$250/year with 100% access</strong> to the full CRN catalog, courses, and ' +
+        'certificates - a 30-year honor commitment.</p>' +
+        '<a class="offer-cta" href="' + LEGACY_OFFER_URL + '">Continue to your Legacy Member offer</a>';
+    } else if (isCF && !verified) {
+      ty.innerHTML = lamp +
+        '<h2>We could not match that email.</h2>' +
+        '<p>We could not match that email to an active CAREforce membership. Here is our ' +
+        'founding offer, or reply to <a class="mail" href="mailto:kschlenker@marshinstitute.org">' +
+        'kschlenker@marshinstitute.org</a> and we will sort it out.</p>' +
+        '<a class="offer-cta" href="' + FOUNDING_OFFER_URL + '">See the Founding offer</a>';
+    }
+    // non-CF keeps the default thank-you content already in the card
+    card.style.display = "none";
+    ty.style.display = "block";
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  function clearErr() {
+    document.querySelectorAll(".field.invalid").forEach(f => f.classList.remove("invalid"));
+    statusEl.textContent = ""; statusEl.classList.remove("error");
+  }
+  function markInvalid(el) {
+    const f = el.closest(".field"); if (f) f.classList.add("invalid");
+  }
+  function radioVal(name) {
+    const el = form.querySelector(`input[name="${name}"]:checked`);
+    return el ? el.value : "";
+  }
+
+  form.addEventListener("submit", async (ev) => {
+    ev.preventDefault();
+    clearErr();
+    let ok = true, firstBad = null;
+
+    const text = ["first_name","last_name","email","role_title","phone","city",
+      "state_region","country"];
+    for (const n of text) {
+      const el = form.elements[n];
+      if (!el.value.trim()) { ok = false; markInvalid(el); firstBad = firstBad || el; }
+    }
+    const em = form.elements["email"];
+    if (em.value.trim() && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em.value.trim())) {
+      ok = false; markInvalid(em); firstBad = firstBad || em;
+    }
+    const radiosReq = ["cf_member","formation_level","role_status","primary_goal",
+      "faith_tradition","federation_org","heard_about"];
+    for (const n of radiosReq) {
+      if (!radioVal(n)) { ok = false;
+        const g = form.querySelector(`.radio-group[data-name="${n}"]`);
+        if (g) g.closest(".field").classList.add("invalid");
+        firstBad = firstBad || (g && g.closest(".field")); }
+    }
+    for (const n of ["cpe_status","cpe_unit"]) {
+      const el = form.elements[n];
+      if (!el.value) { ok = false; markInvalid(el); firstBad = firstBad || el; }
+    }
+    const consent = document.getElementById("email_consent");
+    if (!consent.checked) { ok = false; markInvalid(consent); firstBad = firstBad || consent; }
+
+    if (!ok) {
+      statusEl.textContent = "Please complete the highlighted fields.";
+      statusEl.classList.add("error");
+      if (firstBad && firstBad.scrollIntoView) firstBad.scrollIntoView({behavior:"smooth", block:"center"});
+      return;
+    }
+
+    const funcs = Array.from(form.querySelectorAll('input[name="functional_areas"]:checked'))
+      .map(c => c.value);
+
+    const payload = {
+      email: form.elements["email"].value.trim(),
+      first_name: form.elements["first_name"].value.trim(),
+      last_name: form.elements["last_name"].value.trim(),
+      role_title: form.elements["role_title"].value.trim(),
+      email_consent: consent.checked,
+      formation_level: radioVal("formation_level"),
+      cpe_status: form.elements["cpe_status"].value,
+      cpe_unit: form.elements["cpe_unit"].value,
+      primary_goal: radioVal("primary_goal"),
+      role_status: radioVal("role_status"),
+      phone: form.elements["phone"].value.trim(),
+      city: form.elements["city"].value.trim(),
+      state_region: form.elements["state_region"].value.trim(),
+      country: form.elements["country"].value,
+      faith_tradition: radioVal("faith_tradition"),
+      organization: form.elements["organization"].value.trim() || null,
+      functional_areas: funcs,
+      federation_org: radioVal("federation_org"),
+      careforce_status: radioVal("careforce_status") || null,
+      heard_about: radioVal("heard_about"),
+      source: "crn-supabase-profile-form"
+    };
+
+    btn.disabled = true; statusEl.textContent = "Submitting...";
+
+    const isCF = radioVal("cf_member") === "Yes";
+    const cfEmail = (form.elements["cf_email"] && form.elements["cf_email"].value.trim())
+      || payload.email;
+    let cfVerified = false;
+
+    // Verify CAREforce membership server-side. The function returns ONLY a yes/no
+    // for the submitted email; it never returns the member list.
+    if (isCF) {
+      try {
+        const vr = await fetch(VERIFY_ENDPOINT, {
+          method: "POST",
+          headers: {
+            "apikey": SUPABASE_ANON_KEY,
+            "Authorization": "Bearer " + SUPABASE_ANON_KEY,
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({ email: cfEmail })
+        });
+        if (vr.ok) { const vd = await vr.json(); cfVerified = !!vd.verified; }
+      } catch (e) { console.error("verify error", e); }
+    }
+
+    function insertRow(url, bodyObj) {
+      return fetch(url, {
+        method: "POST",
+        headers: {
+          "apikey": SUPABASE_ANON_KEY,
+          "Authorization": "Bearer " + SUPABASE_ANON_KEY,
+          "Content-Type": "application/json",
+          "Prefer": "return=minimal"
+        },
+        body: JSON.stringify(bodyObj)
+      });
+    }
+
+    try {
+      // 1) Full profile -> crn_profiles (existing behavior, unchanged)
+      const res = await insertRow(ENDPOINT, payload);
+      // 2) Onboarding profile + CF verification result -> onboarding_profiles
+      const obPayload = {
+        email: payload.email,
+        field: (funcs[0] || payload.federation_org || null),
+        context: isCF ? (cfVerified ? "cf-honored-legacy" : "cf-unverified-standard") : "standard",
+        needs: {
+          primary_goal: payload.primary_goal,
+          functional_areas: funcs,
+          cpe_status: payload.cpe_status,
+          formation_level: payload.formation_level,
+          faith_tradition: payload.faith_tradition
+        },
+        is_cf_member: isCF,
+        cf_verified: cfVerified
+      };
+      try { await insertRow(ONBOARDING_ENDPOINT, obPayload); } catch (e) { console.error("onboarding insert", e); }
+
+      if (res.status === 201 || res.status === 200 || res.status === 204) {
+        showResult(isCF, cfVerified);
+      } else {
+        const t = await res.text();
+        statusEl.textContent = "Something went wrong (" + res.status + "). Please try again.";
+        statusEl.classList.add("error");
+        btn.disabled = false;
+        console.error("Supabase error", res.status, t);
+      }
+    } catch (e) {
+      statusEl.textContent = "Network error. Please try again.";
+      statusEl.classList.add("error");
+      btn.disabled = false;
+      console.error(e);
+    }
+  });
+</script>
+
+<script>
+  (function () {
+    function postH() {
+      var h = Math.max(
+        document.documentElement.scrollHeight,
+        document.body ? document.body.scrollHeight : 0);
+      parent.postMessage({ crnFormHeight: h }, "*");
+    }
+    window.addEventListener("load", postH);
+    window.addEventListener("resize", postH);
+    if (window.ResizeObserver && document.body) {
+      new ResizeObserver(postH).observe(document.body);
+    }
+    document.addEventListener("click", function () { setTimeout(postH, 60); });
+    setInterval(postH, 1200);
+  })();
+</script>
+
+</body>
+</html>
